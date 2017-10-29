@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>接口（二续） | 袁晓聪的个人网站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Welcome to my blog, enter password to read.">
+<meta name="keywords" content="Java,Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="接口（二续）">
+<meta property="og:url" content="http://yoursite.com/2017/10/28/接口（二续）/index.html">
+<meta property="og:site_name" content="袁晓聪的个人网站">
+<meta property="og:description" content="Welcome to my blog, enter password to read.">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-28T01:43:00.902Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="接口（二续）">
+<meta name="twitter:description" content="Welcome to my blog, enter password to read.">
+  
+    <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">袁晓聪</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/tags/Java">java笔记</a></li>
+                        
+                            <li><a href="/categories/框架">Java框架</a></li>
+                        
+                            <li><a href="/categories/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.normantriste.top">暂时没有</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">袁晓聪</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">袁晓聪</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/tags/Java">java笔记</a></li>
+                
+                    <li><a href="/categories/框架">Java框架</a></li>
+                
+                    <li><a href="/categories/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                    
+                        <a class="QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-接口（二续）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/28/接口（二续）/" class="article-date">
+      <time datetime="2017-10-28T01:34:00.000Z" itemprop="datePublished">2017-10-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      接口（二续）
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <script src=/js/crypto-js.js></script><script>
+function doDecrypt(pwd, onError) {
+	console.log("in doDecrypt");
+	var txt = document.getElementById("enc_content").innerHTML;
+	var plantext;
+	try {
+	  	var bytes = CryptoJS.AES.decrypt(txt, pwd);
+		plaintext = bytes.toString(CryptoJS.enc.Utf8);
+	} catch(err) {
+		if(onError) {onError(err);}
+		return;
+	}
+	document.getElementById("enc_content").innerHTML = plaintext;
+	document.getElementById("enc_content").style.display = "block";
+   document.getElementById("enc_passwd").style.display = "none";
+}
+</script>
+<div id="enc_content" style="display:none">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</div><div id="enc_passwd"> <input type="password" style=" border-radius: 5px; border-style: groove; height: 30px; width: 50%; cursor: auto; font-size: 102%; color: currentColor; outline: none; text-overflow: initial; padding-left: 5px;">   <input type="submit" value="解锁" onclick="decrypt()" style=" width: 58px; height: 34px; border-radius: 5px; background-color: white; border-style: solid; color: currentColor; ">  <div id="enc_error" style=" display: inline-block; color: #d84527; font: large; "></div> <script>  var onError = function(error) {  $("#enc_error")[0].innerHTML = "password error!";  };  function decrypt() {  var passwd = $("#enc_passwd input")[0].value;  console.log(passwd);  doDecrypt(passwd, onError);  }  </script></div>
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/10/28/接口（二续）/">接口（二续）</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
+        <p><span>发布时间:</span>2017年10月28日 - 09时34分</p>
+        <p><span>最后更新:</span>2017年10月28日 - 09时43分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/10/28/接口（二续）/" title="接口（二续）">http://yoursite.com/2017/10/28/接口（二续）/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/10/28/接口（二续）/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2017/10/28/依赖注入的实现（三）/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          依赖注入的实现（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/27/Spring框架-IOC容器（二）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">bean实例化（二）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+		<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTE1OC83NzA3" style="width:90%;margin:5% auto 0 auto;background: #f6f6f6;padding: 0 12px;border-radius: 5px;box-shadow:0px 0px 5px 1px #efefef;">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2017/10/28/依赖注入的实现（三）/" title="上一篇: 依赖注入的实现（三）">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/10/27/Spring框架-IOC容器（二）/" title="下一篇: bean实例化（二）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/接口（二续）/">接口（二续）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/华为面试题收录1/">华为面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 袁晓聪
+            </div>
+            <div class="footer-right">
+                <a href="javascript:;" target="_blank">Welcome</a>  ♥ <a href="javascript:;" target="_blank">Write</a> by triste
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
