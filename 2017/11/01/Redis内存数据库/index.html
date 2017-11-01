@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis内存数据库(一) | 袁晓聪的个人网站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis&amp;emsp;&amp;emsp;Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis内存数据库(一)">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/01/Redis内存数据库/index.html">
+<meta property="og:site_name" content="袁晓聪的个人网站">
+<meta property="og:description" content="Redis&amp;emsp;&amp;emsp;Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-01T11:45:28.442Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis内存数据库(一)">
+<meta name="twitter:description" content="Redis&amp;emsp;&amp;emsp;Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。">
+  
+    <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">袁晓聪</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/tags/Java">java笔记</a></li>
+                        
+                            <li><a href="/categories/框架">Java框架</a></li>
+                        
+                            <li><a href="/categories/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.normantriste.top">暂时没有</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">袁晓聪</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">袁晓聪</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/tags/Java">java笔记</a></li>
+                
+                    <li><a href="/categories/框架">Java框架</a></li>
+                
+                    <li><a href="/categories/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                    
+                        <a class="QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Redis内存数据库" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/01/Redis内存数据库/" class="article-date">
+      <time datetime="2017-11-01T11:36:00.000Z" itemprop="datePublished">2017-11-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis内存数据库(一)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h3><p><span>&emsp;&emsp;Redis是一个开源的使用ANSIC语言编写、支持网络、可基于内存亦可持久化的日志型、Key-Value数据库，并提供多种语言的API。从2010年3月15日起，Redis的开发工作由VMware主持。从2013年5月开始，Redis的开发由Pivotal赞助。<a id="more"></a><br>&emsp;&emsp;redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set–有序集合)和hash（哈希类型）。这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。<br>&emsp;&emsp;Redis 是一个高性能的key-value数据库。redis的出现，很大程度补偿了memcached这类key/value存储的不足，在部分场合可以对关系数据库起到很好的补充作用。它提供了Java，C/C++，C#，PHP，JavaScript，Perl，Object-C，Python，Ruby，Erlang等客户端，使用很方便.<br>&emsp;&emsp;Redis支持主从同步。数据可以从主服务器向任意数量的从服务器上同步，从服务器可以是关联其他从服务器的主服务器。这使得Redis可执行单层树复制。存盘可以有意无意的对数据进行写操作。由于完全实现了发布/订阅机制，使得从数据库在任何地方同步树时，可订阅一个频道并接收主服务器完整的消息发布记录。同步对读取操作的可扩展性和数据冗余很有帮助。</span></p>
+<h4 id="NoSql"><a href="#NoSql" class="headerlink" title="NoSql"></a>NoSql</h4><p>Not Only SQL，是非关系型的数据库<br>• 处理超大数据量，TB or PB级别<br>• 高并发（万/s），不注重事务（CAP原则）<br>• 易部署、易扩展、易开发<br>• 便宜    </p>
+<h4 id="Key-Value-Store"><a href="#Key-Value-Store" class="headerlink" title="Key-Value Store"></a>Key-Value Store</h4><p>&emsp;&emsp;Key-Value Store 更加注重对海量数据存取的性能、分布式、扩展性支持上，并不需要传统关系数据库的一些特征，例如：Schema、事务、完整SQL查询支持等等，因此在分布式环境下的性能相对于传统的关系数据库有较大的提升。</p>
+<h5 id="Key-value-store-特点："><a href="#Key-value-store-特点：" class="headerlink" title="Key-value store 特点："></a>Key-value store 特点：</h5><p>– 只支持一些基本操作<br>– 分布式<br>– 冗余<br>– 容错<br>– 高可靠性  </p>
+<h5 id="Key-Value-存储系统"><a href="#Key-Value-存储系统" class="headerlink" title="Key-Value 存储系统"></a>Key-Value 存储系统</h5><ol>
+<li>Dynamo是亚马逊的 key-value 模式的存储平台，可用性和扩展性都很好，性能也不错：读写访问中99.9%的响应时间都在300ms 内</li>
+<li>Memcached是一个自由开源的,高性能,分布式内存对象缓存系统，用于动态Web应用以减轻数据库负载。它通过在内存中缓存数据和对象来减少读取数据库的次数，从而提高动态、数据库驱动网站的速度.</li>
+<li>Redis 是一个开源的、内存中的数据结构存储系统，与memcached 类似，区别是 Redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件</li>
+</ol>
+<h4 id="Redis介绍"><a href="#Redis介绍" class="headerlink" title="Redis介绍"></a>Redis介绍</h4><ol>
+<li>Redis本质上是一个键值模型的内存数据库，整个数据库加载在内存中进行数据操作，并定期通过异步操作把数据库数据写回到硬盘上进行保存。</li>
+<li>redis的性能非常出色，在一台普通的电脑上，每秒可以处理超过10万次读写操作。</li>
+<li>redis可以用作缓存和队列系统中，可以为每个键设置生存时间，生存时间到期后会自动删除，还支持“发布/订阅”的消息模式。</li>
+<li>Redis 支持的数据类型包括 string(字符串)、 list(列表)、 set(集合)<br>、hash（哈希表）等。</li>
+</ol>
+<h4 id="Redis适用场合"><a href="#Redis适用场合" class="headerlink" title="Redis适用场合"></a>Redis适用场合</h4><p>• 缓存应用<br>• 分布式集群架构中的session管理<br>• 取最新N个数据的操作<br>• 排行榜应用<br>• 网站访问统计<br>• 任务队列  </p>
+<h2 id="安装配置"><a href="#安装配置" class="headerlink" title="安装配置"></a>安装配置</h2><h3 id="unix上配置"><a href="#unix上配置" class="headerlink" title="unix上配置"></a>unix上配置</h3><h4 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">• wget http://download.redis.io/releases/redis-3.2.8.tar.gz  </div><div class="line">• tar xzf redis-3.2.8.tar.gz  </div><div class="line">• cd redis-3.2.8  </div><div class="line">• make  </div><div class="line">• 启动Redis服务  </div><div class="line">– src/redis-server  </div><div class="line">• 客户端连接验证  </div><div class="line">– src/redis-cli  </div><div class="line">• 停止 Redis 实例  </div><div class="line">– src/redis-cli shutdown</div></pre></td></tr></table></figure>
+<h4 id="配置-Redis"><a href="#配置-Redis" class="headerlink" title="配置 Redis"></a>配置 Redis</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">• Redis 的配置文件为redis.conf 文件  </div><div class="line">• port  </div><div class="line">监听端口，默认为 6379  </div><div class="line">• timeout  </div><div class="line">设置客户端连接时的超时时间，单位为秒。  </div><div class="line">• loglevel  </div><div class="line">log 等级分为 4 级，debug,verbose,notice和warning，生产环境下一般开启notice </div><div class="line">• logfile  </div><div class="line">配置 log 文件地址，默认使用标准输出，即打印在命令行终端的窗口上  </div><div class="line">• bind：  </div><div class="line">指定 Redis 只接收来自于该IP地址的请求，如果不进行设置，那么将处理所有请求  </div><div class="line">• maxmemory：  </div><div class="line">设置 redis 能够使用的最大内存</div></pre></td></tr></table></figure>
+<h3 id="windows上配置"><a href="#windows上配置" class="headerlink" title="windows上配置"></a>windows上配置</h3><h4 id="安装服务"><a href="#安装服务" class="headerlink" title="安装服务"></a>安装服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-install redis.windows.conf</div></pre></td></tr></table></figure>
+<h4 id="卸载服务"><a href="#卸载服务" class="headerlink" title="卸载服务"></a>卸载服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-uninstall</div></pre></td></tr></table></figure>
+<h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-start</div></pre></td></tr></table></figure>
+<h4 id="停止服务"><a href="#停止服务" class="headerlink" title="停止服务"></a>停止服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server --service-stop</div></pre></td></tr></table></figure>
+<h4 id="密码"><a href="#密码" class="headerlink" title="密码"></a>密码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis.windows.conf 中 第386行 requirepass #中修改替换#</div></pre></td></tr></table></figure>
+<h4 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">## redis.windows.conf</div><div class="line">默认的端口号：</div><div class="line">        # Accept connections on the specified port, default is 6379.</div><div class="line">        # If port 0 is specified Redis will not listen on a TCP socket.</div><div class="line">        port 6379</div></pre></td></tr></table></figure>
+<h4 id="远程连接别人的数据库"><a href="#远程连接别人的数据库" class="headerlink" title="远程连接别人的数据库"></a>远程连接别人的数据库</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">redis-cli.exe -h ip地址 -p 端口号 -a &quot;密码&quot;</div><div class="line">例如：</div><div class="line">redis-cli.exe -h 10.25.160.83 -p 6379 -a &quot;123456&quot;</div></pre></td></tr></table></figure>
+<h4 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ping</div><div class="line">响应 PONG 表示连接成功</div><div class="line">使用命令 auth 123456 ##修改密码为123456</div></pre></td></tr></table></figure>
+<h3 id="操作数据库"><a href="#操作数据库" class="headerlink" title="操作数据库"></a>操作数据库</h3><ol>
+<li><p>插入数据  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">set name ljs</div></pre></td></tr></table></figure>
+</li>
+<li><p>查询数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">get name</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除键值  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">del name</div></pre></td></tr></table></figure>
+</li>
+<li><p>验证键是否存在  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exsists name</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回所有 key  </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">keys *  </div><div class="line">keys mylist*</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置一个 key 的过期时间(单位:秒)</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">expire name 10</div></pre></td></tr></table></figure>
+</li>
+<li><p>移除给定 key 的过期时间 </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">persist name</div></pre></td></tr></table></figure>
+</li>
+<li><p>选择数据库</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select</div></pre></td></tr></table></figure>
+</li>
+<li><p>将当前数据库中的 key 转移到其它数据库中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">move name 1</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回值的类型 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">type name</div></pre></td></tr></table></figure>
+</li>
+<li><p>测试连接是否存活</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ping</div></pre></td></tr></table></figure>
+</li>
+<li><p>返回当前数据库中 key 的数目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dbsize</div></pre></td></tr></table></figure>
+</li>
+<li><p>监视–实时转储收到的请求  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">monitor</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除当前选择数据库中的所有 key  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flushdb</div></pre></td></tr></table></figure>
+</li>
+<li><p>删除所有数据库中的所有 key  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">flashall</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Redis数据类型–strings-类型及操作"><a href="#Redis数据类型–strings-类型及操作" class="headerlink" title="Redis数据类型–strings 类型及操作"></a>Redis数据类型–strings 类型及操作</h3><p>&emsp;&emsp;string 是最简单的类型 ，一个 key 对应一个value<br>&emsp;&emsp;redis 的 string 可以包含任何数据，比如jpg图片或者序列化的对象，从内部实现来看其实 string 可以看作 byte数组，最大上限是 1G 字节。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">• set  </div><div class="line">– set name ljs  </div><div class="line">• Setnx：如果 key 已经存在，返回 0  </div><div class="line">– setnx name ljs  </div><div class="line">• Setex：指定此键值对应的有效期 ,时间单位为秒  </div><div class="line">– setex user 100 ljs  </div><div class="line">• setrange ：设置指定 key 的 value 值的子字符串，从指定的位置开始替换字符  </div><div class="line">setrange name 3 @gmail.com  </div><div class="line">• mset ：一次设置多个 key 的值  </div><div class="line">mset key1 ljs key2 lkr  </div><div class="line">• getrange ：获取指定 key 的 value 值的子字符串  </div><div class="line">getrange name 0 6  </div><div class="line">• mget :一次获取多个 key 的值  </div><div class="line">mget key1 key2 key3  </div><div class="line">incr:对 key 的值做加加操作  </div><div class="line">incr age  </div><div class="line">• incrby :同 incr 类似，加指定值  </div><div class="line">incrby age 5  </div><div class="line">• decr :对 key 的值做的是减减操作  </div><div class="line">decr age  </div><div class="line">• decrby :同 decr，减指定值  </div><div class="line">decrby age 5  </div><div class="line">• append :给指定 key 的字符串值追加 value,返回新字符串值的长度  </div><div class="line">append name @126.com  </div><div class="line">• strlen :取指定 key 的 value 值的长度  </div><div class="line">strlen name</div></pre></td></tr></table></figure></p>
+<h3 id="Redis数据类型–hash-类型及操作"><a href="#Redis数据类型–hash-类型及操作" class="headerlink" title="Redis数据类型–hash 类型及操作"></a>Redis数据类型–hash 类型及操作</h3><p>&emsp;&emsp;Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象，相较于将对象的每个字段存成单个string类型，将一个对象存储在hash类型中会占用更少的内存，并且可以更方便的存取整个对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">• hset :设置 hash field 为指定值  </div><div class="line">hset myhash name ljs  </div><div class="line">• hget :获取指定的 hash field  </div><div class="line">hget myhash name  </div><div class="line">• Hmset:同时设置 hash 的多个 field  </div><div class="line">hmset myhash name ljs age 20  </div><div class="line">• hmget :获取全部指定的 hash filed  </div><div class="line">hmget myhash name age password  </div><div class="line"></div><div class="line">hlen :返回指定 hash 的 field 数量  </div><div class="line">hlen myhash  </div><div class="line">• hdel  </div><div class="line">hdel myhash field1  </div><div class="line">• hkeys:返回 hash 的所有 field  </div><div class="line">hkeys myhash  </div><div class="line">• hvals :返回 hash 的所有 value  </div><div class="line">hvals myhash  </div><div class="line">• hgetall :获取某个 hash 中全部的 filed 及 value  </div><div class="line">hgetall myhash</div></pre></td></tr></table></figure></p>
+<h3 id="Redis数据类型–lists-类型及操作"><a href="#Redis数据类型–lists-类型及操作" class="headerlink" title="Redis数据类型–lists 类型及操作"></a>Redis数据类型–lists 类型及操作</h3><p>&emsp;&emsp;list 是一个链表结构，主要功能是 push、pop、获取一个范围的所有值等，操作中 key 理解为链表的名字。<br>&emsp;&emsp;Redis 的list类型其实就是一个每个子元素都是string类型的双向链表。链表的最大长度是(2的32次方)。我们可以通过push,pop操作从链表的头部或者尾部添加删除元素。这使得 list既可以用作栈，也可以用作队列。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">• Lpush:在 key 对应 list 的头部添加字符串元素  </div><div class="line">lpush mylist world lpush mylist hello  </div><div class="line">• lrange  </div><div class="line">lrange mylist 0 1  </div><div class="line">• rpush :在 key 对应 list 的尾部添加字符串元素  </div><div class="line">rpush mylist1 world rpush mylist1 hello  </div><div class="line">• linsert :在 key 对应 list 的特定位置之前或之后添加字符串元素  </div><div class="line">linsert mylist1 before world there  </div><div class="line"></div><div class="line">• lset :设置 list 中指定下标的元素值(下标从 0 开始)  </div><div class="line">rpush mylist2 one  </div><div class="line">rpush mylist2 two  </div><div class="line">rpush mylist2 three  </div><div class="line">lset mylist2 0 four  </div><div class="line">• lrem :从 key 对应 list 中删除 count 个和 value 相同的元素  </div><div class="line">rpush mylist3 hello  </div><div class="line">rpush mylist3 hello  </div><div class="line">rpush mylist3 world  </div><div class="line">rpush mylist3 hello  </div><div class="line">rpush mylist3 hello  </div><div class="line">lrem mylist3 2 hello  </div><div class="line"></div><div class="line">• ltrim :保留指定 key 的值范围内的数据  </div><div class="line">rpush mylist4 1  </div><div class="line">rpush mylist4 2  </div><div class="line">rpush mylist4 3  </div><div class="line">rpush mylist4 4  </div><div class="line">rpush mylist4 5  </div><div class="line">ltrim mylist4 1 3  </div><div class="line">• lpop :从 list 的头部删除元素，并返回删除元素  </div><div class="line">lpop mylist4  </div><div class="line"></div><div class="line">• rpop :从 list 的尾部删除元素，并返回删除元素  </div><div class="line">rpop mylist4  </div><div class="line">• lindex :返回名称为 key 的 list 中 index 位置的元素  </div><div class="line">lindex mylist4 0  </div><div class="line">• llen :返回 key 对应 list 的长度  </div><div class="line">llen mylist4</div></pre></td></tr></table></figure></p>
+<h3 id="Redis数据类型–sets-类型及操作"><a href="#Redis数据类型–sets-类型及操作" class="headerlink" title="Redis数据类型–sets 类型及操作"></a>Redis数据类型–sets 类型及操作</h3><p>&emsp;&emsp;Redis 的 set 是 string 类型的无序集合。 set 元素最大可以包含(2 的 32 次方)个元素。<br>&emsp;&emsp;可以对集合进行添加删除元素，通过key对多个集合求交并差等操作， 操作中key 理解为集合的名字。<br>&emsp;&emsp;set 是通过 hash table 实现的， hash table 会随着添加或者删除自动的调整大小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">• sadd  </div><div class="line">sadd myset hello  </div><div class="line">sadd myset world  </div><div class="line">sadd myset hello  </div><div class="line">• smembers ：查看 myset 中的所有元素  </div><div class="line">smembers myset  </div><div class="line">• srem ：删除名称为 key 的 set 中的元素 member  </div><div class="line">srem myset hello  </div><div class="line">• spop ：随机删除名称为 key 的 set 中一个元素  </div><div class="line">spop myset  </div><div class="line"></div><div class="line">• Sdiff:返回第一个 set集合与第二个 set集合的差集  </div><div class="line">sadd myset1 one  </div><div class="line">sadd myset1 two  </div><div class="line">sadd myset1 three  </div><div class="line">sadd myset2 two  </div><div class="line">sadd myset2 three  </div><div class="line">sadd myset2 four  </div><div class="line">sdiff myset2 myset1  </div><div class="line">• sdiffstore :返回第一个 set集合与第二个set集合的差集，并将结果存为另一个 set  </div><div class="line">sdiffstore myset3 myset2 myset1  </div><div class="line"></div><div class="line">• Sinter:返回所有给定 key 的交集 （获取共同的朋友）  </div><div class="line">sinter myset1 myset2  </div><div class="line">• sinterstore :返回所有给定 key 的交集，并将结果存为另一个 key  </div><div class="line">sinterstore myset4 myset2 myset1  </div><div class="line">• Sunion:返回所有给定 key 的并集  </div><div class="line">sunion myset2 myset1  </div><div class="line">• sunionstore :返回所有给定 key 的并集，并将结果存为另一个 key  </div><div class="line">sunionstore myset5 myset2 myset1  </div><div class="line">• Scard:返回名称为 key 的 set 的元素个数  </div><div class="line">scard myset2</div></pre></td></tr></table></figure></p>
+<h3 id="Redis数据类型–sorted-sets类型及操作"><a href="#Redis数据类型–sorted-sets类型及操作" class="headerlink" title="Redis数据类型–sorted sets类型及操作"></a>Redis数据类型–sorted sets类型及操作</h3><p>&emsp;&emsp;sorted set 是 set 的一个升级版本， 它在 set 的基础上增加了一个分数属性，使我们能够获得分数最高、最低的前n个元素，获得指定分数范围内的元素等与分数有关的操作。<br>&emsp;&emsp;和 set 一样，sortedset也是string类型元素的集合，不同的是每个元素都会关联一个 double类型的 score。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line">• zadd：向名称为 key的zset中添加元素member，score用于设定分数。如果该元素已经存在，则根据score 更新该元素的分数。  </div><div class="line">zadd key score member  </div><div class="line">zadd myzset 1 one  </div><div class="line">zadd myzset 2 two  </div><div class="line">zadd myzset 3 two  </div><div class="line">zrange myzset 0 -1 withscores  </div><div class="line">• zrem :删除名称为 key 的 zset 中的元素 member  </div><div class="line">zrem myzset two  </div><div class="line"></div><div class="line">• Zincrby：给成员增加指定分数  </div><div class="line">zadd myzset1 1 one  </div><div class="line">zadd myzset1 2 two  </div><div class="line">zincrby myzset1 1 one  </div><div class="line">zrange myzset1 0 -1withscores   </div><div class="line">• zrank ：返回zset 中名称为key的member元素的排名(按score从小到大排序)即下标  </div><div class="line">zrank myzset1 two  </div><div class="line"></div><div class="line">• zrevrank：返回zset中名称为key的member元素的排名(按score从大到小排序)即下标  </div><div class="line">zrevrank myzset1 two  </div><div class="line">• zrevrange ：按 score 从大到小排序，再取出全部元素  </div><div class="line">zrevrange myzset1 0 -1 withscores  </div><div class="line">• zrangebyscore ：返回集合中 score 在给定区间的元素  </div><div class="line">zrangebyscore myzset1 2 3 withscores  </div><div class="line">• zcount ：返回集合中 score 在给定区间的数量  </div><div class="line">zcount myzset1 2 3  </div><div class="line"></div><div class="line">• zcard ：返回集合中元素个数  </div><div class="line">zcard myzset1  </div><div class="line">• zscore ：返回给定元素对应的 score  </div><div class="line">zscore myzset1 two  </div><div class="line">• zremrangebyrank ：删除集合中排名在给定区间的元素  </div><div class="line">zremrangebyrank myzset1 3 3  </div><div class="line">• zremrangebyscore ：删除集合中 score 在给定区间的元素  </div><div class="line">zremrangebyscore myzset1 1 2</div></pre></td></tr></table></figure></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/11/01/Redis内存数据库/">Redis内存数据库(一)</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
+        <p><span>发布时间:</span>2017年11月01日 - 19时36分</p>
+        <p><span>最后更新:</span>2017年11月01日 - 19时45分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/01/Redis内存数据库/" title="Redis内存数据库(一)">http://www.normantriste.top/2017/11/01/Redis内存数据库/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/01/Redis内存数据库/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/30/软件开发工程师（Java）题库二/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">软件开发工程师（Java）题库二</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis"><span class="toc-number">1.</span> <span class="toc-text">Redis</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#NoSql"><span class="toc-number">1.1.</span> <span class="toc-text">NoSql</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Key-Value-Store"><span class="toc-number">1.2.</span> <span class="toc-text">Key-Value Store</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Key-value-store-特点："><span class="toc-number">1.2.1.</span> <span class="toc-text">Key-value store 特点：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Key-Value-存储系统"><span class="toc-number">1.2.2.</span> <span class="toc-text">Key-Value 存储系统</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis介绍"><span class="toc-number">1.3.</span> <span class="toc-text">Redis介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis适用场合"><span class="toc-number">1.4.</span> <span class="toc-text">Redis适用场合</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装配置"><span class="toc-number"></span> <span class="toc-text">安装配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unix上配置"><span class="toc-number">1.</span> <span class="toc-text">unix上配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Redis安装"><span class="toc-number">1.1.</span> <span class="toc-text">Redis安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#配置-Redis"><span class="toc-number">1.2.</span> <span class="toc-text">配置 Redis</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#windows上配置"><span class="toc-number">2.</span> <span class="toc-text">windows上配置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装服务"><span class="toc-number">2.1.</span> <span class="toc-text">安装服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#卸载服务"><span class="toc-number">2.2.</span> <span class="toc-text">卸载服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动服务"><span class="toc-number">2.3.</span> <span class="toc-text">启动服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#停止服务"><span class="toc-number">2.4.</span> <span class="toc-text">停止服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#密码"><span class="toc-number">2.5.</span> <span class="toc-text">密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#端口号"><span class="toc-number">2.6.</span> <span class="toc-text">端口号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#远程连接别人的数据库"><span class="toc-number">2.7.</span> <span class="toc-text">远程连接别人的数据库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#测试连接"><span class="toc-number">2.8.</span> <span class="toc-text">测试连接</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#操作数据库"><span class="toc-number">3.</span> <span class="toc-text">操作数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis数据类型–strings-类型及操作"><span class="toc-number">4.</span> <span class="toc-text">Redis数据类型–strings 类型及操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis数据类型–hash-类型及操作"><span class="toc-number">5.</span> <span class="toc-text">Redis数据类型–hash 类型及操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis数据类型–lists-类型及操作"><span class="toc-number">6.</span> <span class="toc-text">Redis数据类型–lists 类型及操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis数据类型–sets-类型及操作"><span class="toc-number">7.</span> <span class="toc-text">Redis数据类型–sets 类型及操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis数据类型–sorted-sets类型及操作"><span class="toc-number">8.</span> <span class="toc-text">Redis数据类型–sorted sets类型及操作</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+		<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTE1OC83NzA3" style="width:90%;margin:5% auto 0 auto;background: #f6f6f6;padding: 0 12px;border-radius: 5px;box-shadow:0px 0px 5px 1px #efefef;">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/10/30/软件开发工程师（Java）题库二/" title="下一篇: 软件开发工程师（Java）题库二">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/Redis内存数据库/">Redis内存数据库(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/软件开发工程师（Java）题库二/">软件开发工程师（Java）题库二</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/29/软件开发工程师（Java）题库一/">软件开发工程师（Java）题库一</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/接口（二续）/">接口（二续）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/华为面试题收录1/">华为面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 袁晓聪
+            </div>
+            <div class="footer-right">
+                <a href="javascript:;" target="_blank">Welcome</a>  ♥ <a href="javascript:;" target="_blank">Write</a> by triste
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
