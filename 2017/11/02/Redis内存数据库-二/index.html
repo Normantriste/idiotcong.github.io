@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Redis内存数据库(二) | 袁晓聪的个人网站</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redis主从复制• 通过主从复制可以允许多个 slave server 拥有和master server相同的数据库副本• 读写分离• 提高系统的伸缩性• 防止单点故障">
+<meta name="keywords" content="Redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis内存数据库(二)">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/02/Redis内存数据库-二/index.html">
+<meta property="og:site_name" content="袁晓聪的个人网站">
+<meta property="og:description" content="Redis主从复制• 通过主从复制可以允许多个 slave server 拥有和master server相同的数据库副本• 读写分离• 提高系统的伸缩性• 防止单点故障">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-11-02T12:19:42.667Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redis内存数据库(二)">
+<meta name="twitter:description" content="Redis主从复制• 通过主从复制可以允许多个 slave server 拥有和master server相同的数据库副本• 读写分离• 提高系统的伸缩性• 防止单点故障">
+  
+    <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet" />
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">袁晓聪</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+        
+        
+            <form>
+                <input type="text" class="st-default-search-input search" id="search" placeholder=" Search...">
+            </form>
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/Home">博客首页</a></li>
+                        
+                            <li><a href="/tags/Java">java笔记</a></li>
+                        
+                            <li><a href="/categories/框架">Java框架</a></li>
+                        
+                            <li><a href="/categories/随笔">随笔</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                            
+                                <a class="fl weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                            
+                                <a class="fl QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 13.33px;">Redis</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.jackfeng.top">JFeng&#39;s blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.HabuchiMoe.top">HabuchiMoe&#39;s blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.astolfo.top">Astolfo&#39;s blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.monyl.top">Mon&#39;s blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.chenwx.top">Will&#39;s blog</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://www.dayufenfei.top">大宇纷飞</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">袁晓聪</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">袁晓聪</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Nothing is nothing,simplify is best!</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/Home">博客首页</a></li>
+                
+                    <li><a href="/tags/Java">java笔记</a></li>
+                
+                    <li><a href="/categories/框架">Java框架</a></li>
+                
+                    <li><a href="/categories/随笔">随笔</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=852278617@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
+                    
+                        <a class="weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
+                    
+                        <a class="QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-Redis内存数据库-二" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/02/Redis内存数据库-二/" class="article-date">
+      <time datetime="2017-11-02T11:58:00.000Z" itemprop="datePublished">2017-11-02</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Redis内存数据库(二)
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Redis/">Redis</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/">Redis</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="Redis主从复制"><a href="#Redis主从复制" class="headerlink" title="Redis主从复制"></a>Redis主从复制</h3><p>• 通过主从复制可以允许多个 slave server 拥有和master server相同的数据库副本<br>• 读写分离<br>• 提高系统的伸缩性<br>• 防止单点故障<br><a id="more"></a><br>• redis 主从复制特点<br>– master 可以拥有多个 slave<br>– 多个 slave 可以连接同一个master外，还可以连接到其他slave<br>– 主从复制不会阻塞master，在同步数据时，master可以继续处理 client 请求<br>– 提高系统的伸缩性  </p>
+<h3 id="Redis主从复制原理"><a href="#Redis主从复制原理" class="headerlink" title="Redis主从复制原理"></a>Redis主从复制原理</h3><p>• 当一个从数据库启动时，会向主数据库发送SYNC命令，主数据库收到命令后会开始在后台保存快照（即RDB持久化过程），并将保存快照期间接收到的命令缓存起来。<br>• 当快照完成后，Redis会将快照文件和缓存的命令发给从数据库，从数据库收到数据后，会载入快照文件并执行缓存的命令。<br>以上过程称为复制初始化。<br>• 复制初始化结束后，主数据库每收到写命令时就会将命令同步给从数据库，从而保证主从数据库数据一致，这一过程称为复制同步阶段。  </p>
+<p>1、复制产生新的主服务器配置文件<br>    redis.windows_M.conf</p>
+<p>a、修改端口号 为6000<br>b、修改密码为： 123456<br>注：仅修改两项</p>
+<p>2、复制产生新的从服务器配置文件<br>    redis.windows_S1.conf</p>
+<p>a、修改端口号 为6001<br>b、修改密码为： 123456（建议与主服务器密码一样）<br>c、修改并设置主服务器地址与端口号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># slaveof &lt;masterip&gt; &lt;masterport&gt;(去掉前面的#号)</div><div class="line">&lt;masterip&gt;修改为 主服务器的Ip地址</div><div class="line">&lt;masterport&gt;修改为 主服务器端口</div><div class="line"></div><div class="line">修改后：</div><div class="line">slaveof 127.0.0.1 6000</div></pre></td></tr></table></figure></p>
+<p>d、修改连接主服务器的密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># masterauth &lt;master-password&gt;(去掉前面的#号)</div><div class="line">修改后：</div><div class="line">masterauth 123456</div></pre></td></tr></table></figure></p>
+<p>3、用户客户端连接–主服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -p 6000</div><div class="line">auth 123456</div></pre></td></tr></table></figure></p>
+<p>4、用客户端连接–从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -p 6001</div><div class="line">auth 123456</div></pre></td></tr></table></figure></p>
+<h3 id="Java-使用-Redis–Java连接到Redis服务器"><a href="#Java-使用-Redis–Java连接到Redis服务器" class="headerlink" title="Java 使用 Redis–Java连接到Redis服务器"></a>Java 使用 Redis–Java连接到Redis服务器</h3><p>在java中使用Redis，需要引入Redis驱动–jedis-2.1.0.jar<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">commons-pool-1.6.jar  </div><div class="line">jedis-2.1.0.jar</div></pre></td></tr></table></figure></p>
+<p>RedisUtil.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> redisTest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</div><div class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPool;</div><div class="line"><span class="keyword">import</span> redis.clients.jedis.JedisPoolConfig;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RedisUtil</span> </span>&#123;</div><div class="line">	String addr = <span class="string">"localhost"</span>;<span class="comment">//主机地址或IP地址</span></div><div class="line">	<span class="keyword">int</span> port = <span class="number">6379</span>;<span class="comment">//端口号</span></div><div class="line">	String auth= <span class="string">"123456"</span>;<span class="comment">//密码</span></div><div class="line">	<span class="comment">//最大连接数量</span></div><div class="line">	<span class="keyword">int</span> max_active = <span class="number">100</span>;</div><div class="line">	<span class="comment">//最大空闲数量</span></div><div class="line">	<span class="keyword">int</span> max_idle = <span class="number">100</span>;</div><div class="line">	<span class="comment">//等待时间,获取可用连接最大等待时间 ,默认为-1表示用不超时</span></div><div class="line">	<span class="keyword">int</span> max_wait = <span class="number">2000</span>;</div><div class="line">	<span class="comment">//设置超时</span></div><div class="line">	<span class="keyword">int</span> timeout = <span class="number">5000</span>;</div><div class="line">	</div><div class="line">	JedisPool jedispool;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">RedisUtil</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">super</span>();</div><div class="line">		<span class="comment">// 连接池</span></div><div class="line">		JedisPoolConfig config = <span class="keyword">new</span> JedisPoolConfig();</div><div class="line">		config.setMaxActive(max_active);</div><div class="line">		config.setMaxIdle(max_idle);</div><div class="line">		config.setMaxWait(max_wait);</div><div class="line"></div><div class="line">		config.setTestOnBorrow(<span class="keyword">true</span>);<span class="comment">//创建实例验证，保证创建出来的实例是可用的</span></div><div class="line">		</div><div class="line">		jedispool = <span class="keyword">new</span> JedisPool(config, addr,port,timeout,auth);</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> Jedis <span class="title">getJedis</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(jedispool!=<span class="keyword">null</span>) &#123;</div><div class="line">			<span class="keyword">return</span> jedispool.getResource();</div><div class="line">		&#125;<span class="keyword">else</span> &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">returnResource</span><span class="params">(Jedis jedis)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(jedis!=<span class="keyword">null</span>) &#123;</div><div class="line">			jedispool.returnResource(jedis);</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>测试 Test.java<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> redisTest;</div><div class="line"></div><div class="line"><span class="keyword">import</span> java.util.HashMap;</div><div class="line"><span class="keyword">import</span> java.util.Iterator;</div><div class="line"><span class="keyword">import</span> java.util.List;</div><div class="line"><span class="keyword">import</span> java.util.Map;</div><div class="line"><span class="keyword">import</span> java.util.Set;</div><div class="line"></div><div class="line"><span class="keyword">import</span> redis.clients.jedis.Jedis;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">		RedisUtil ru = <span class="keyword">new</span> RedisUtil();</div><div class="line">		Jedis jedis = ru.getJedis();</div><div class="line">		</div><div class="line">		testString(jedis);</div><div class="line">		testMap(jedis);</div><div class="line">		testList(jedis);</div><div class="line">		testSet(jedis);</div><div class="line">		ru.returnResource(jedis);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testString</span><span class="params">(Jedis jedis)</span> </span>&#123;</div><div class="line">		System.out.println(<span class="string">"-------------String-------------"</span>);</div><div class="line">		jedis.set(<span class="string">"name"</span>, <span class="string">"zs"</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"name="</span>+jedis.get(<span class="string">"name"</span>));</div><div class="line">		</div><div class="line">		jedis.append(<span class="string">"name"</span>, <span class="string">" hello !"</span>);</div><div class="line"></div><div class="line">		System.out.println(<span class="string">"name="</span>+jedis.get(<span class="string">"name"</span>));</div><div class="line">		</div><div class="line">		jedis.del(<span class="string">"name"</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"name="</span>+jedis.get(<span class="string">"name"</span>));</div><div class="line">		</div><div class="line">		jedis.mset(<span class="string">"name"</span>,<span class="string">"张三"</span>,<span class="string">"age"</span>,<span class="string">"20"</span>,<span class="string">"email"</span>,<span class="string">"xxx@qq.com"</span>);</div><div class="line">		jedis.incr(<span class="string">"age"</span>);</div><div class="line">		</div><div class="line">		System.out.println(jedis.get(<span class="string">"name"</span>)+<span class="string">"  "</span>+jedis.get(<span class="string">"age"</span>));</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testMap</span><span class="params">(Jedis j)</span> </span>&#123;</div><div class="line">		Map&lt;String, String&gt; map = <span class="keyword">new</span>  HashMap&lt;&gt;();</div><div class="line">		map.put(<span class="string">"name"</span>, <span class="string">"zs"</span>);</div><div class="line">		map.put(<span class="string">"age"</span>, <span class="string">"20"</span>);</div><div class="line">		map.put(<span class="string">"email"</span>, <span class="string">"zs@163.com"</span>);</div><div class="line">		</div><div class="line">		j.hmset(<span class="string">"stu"</span>, map);<span class="comment">//将学生信息的map 放入到redis服务器中</span></div><div class="line">		</div><div class="line">		List&lt;String&gt; list = j.hmget(<span class="string">"stu"</span>,<span class="string">"name"</span>, <span class="string">"age"</span>,<span class="string">"email"</span> );</div><div class="line">		System.out.println(<span class="string">"-------------Map----------------"</span>);</div><div class="line">		System.out.println(list);</div><div class="line">		</div><div class="line">		<span class="comment">//j.hget("stu", "name");</span></div><div class="line">		<span class="comment">//j.hlen("stu");</span></div><div class="line">		</div><div class="line">		</div><div class="line">		<span class="comment">//j.exists("stu");</span></div><div class="line">		Set set = j.hkeys(<span class="string">"stu"</span>);</div><div class="line">		<span class="comment">//j.hvals(key);</span></div><div class="line">		</div><div class="line">		Iterator ite = set.iterator();</div><div class="line">		<span class="keyword">while</span>(ite.hasNext()) &#123;</div><div class="line">			System.out.println(ite.next());</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testList</span><span class="params">(Jedis j)</span> </span>&#123;</div><div class="line">		j.del(<span class="string">"java"</span>);<span class="comment">//删除</span></div><div class="line">		j.lpush(<span class="string">"java"</span>, <span class="string">"spring"</span>);</div><div class="line">		j.lpush(<span class="string">"java"</span>, <span class="string">"springMvc"</span>);</div><div class="line">		j.lpush(<span class="string">"java"</span>, <span class="string">"mybatis"</span>);</div><div class="line">		j.lpush(<span class="string">"java"</span>, <span class="string">"java基础"</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"-------------list---------------"</span>);</div><div class="line">		System.out.println(<span class="string">"长度："</span>+j.llen(<span class="string">"java"</span>));</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"java:0"</span>+j.lrange(<span class="string">"java"</span>, <span class="number">0</span>, -<span class="number">1</span>));<span class="comment">//列出所有</span></div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testSet</span><span class="params">(Jedis j)</span> </span>&#123;</div><div class="line">		</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a1"</span>);</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a2"</span>);</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a3"</span>);</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a4"</span>);</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a5"</span>);</div><div class="line">		j.sadd(<span class="string">"user"</span>, <span class="string">"a6"</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"-------------set----------------"</span>);</div><div class="line">		System.out.println(<span class="string">"user:"</span>+j.smembers(<span class="string">"user"</span>));</div><div class="line">		j.srem(<span class="string">"user"</span>, <span class="string">"a5"</span>);<span class="comment">//删除元素</span></div><div class="line">		System.out.println(<span class="string">"user:"</span>+j.smembers(<span class="string">"user"</span>)+<span class="string">"删除了a5"</span>);</div><div class="line">		</div><div class="line">		System.out.println(<span class="string">"获取集合元素个数："</span>+j.scard(<span class="string">"user"</span>));</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">运行结果：</div><div class="line">-------------String-------------</div><div class="line">name=zs</div><div class="line">name=zs hello !</div><div class="line">name=<span class="keyword">null</span></div><div class="line">张三  <span class="number">21</span></div><div class="line">-------------Map----------------</div><div class="line">[zs, <span class="number">20</span>, zs@<span class="number">163</span>.com]</div><div class="line">name</div><div class="line">age</div><div class="line">email</div><div class="line">-------------list---------------</div><div class="line">长度：<span class="number">4</span></div><div class="line">java:<span class="number">0</span>[java基础, mybatis, springMvc, spring]</div><div class="line">-------------set----------------</div><div class="line">user:[a1, a2, a3, a4, a5, a6]</div><div class="line">user:[a1, a2, a3, a4, a6]删除了a5</div><div class="line">获取集合元素个数：<span class="number">5</span></div></pre></td></tr></table></figure></p>
+<h3 id="事务控制"><a href="#事务控制" class="headerlink" title="事务控制"></a>事务控制</h3><p>• Redis中的事务(transaction)是一组命令的集合。事务同命令一样都是Redis最小的执行单位，一个事务中的命令要么都执行，要么都不执行。<br>• Redis事务的实现需要用到MULTI和EXEC两个命令，事务开始的时候先向Redis服务器发送MULTI命令，然后依次发送需要在本次事务中处理的命令，最后再发送EXEC命令表示事务命令结束。<br>• 事务控制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">multi  </div><div class="line">set age 10  </div><div class="line">set age 20  </div><div class="line">exec  </div><div class="line">get age</div></pre></td></tr></table></figure></p>
+<p>• 取消一个事务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">multi</div><div class="line">set age 10</div><div class="line">set age 20</div><div class="line">discard</div><div class="line">get age</div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Jedis jedis = RedisUtil.getJedis();</div><div class="line">Transaction tx = jedis.multi();</div><div class="line">tx.set(<span class="string">"name"</span>, <span class="string">"ljs"</span>);</div><div class="line">tx.set(<span class="string">"name"</span>, <span class="string">"ljs1"</span>);</div><div class="line">tx.exec();</div><div class="line">System.out.println(jedis.get(<span class="string">"name"</span>));</div><div class="line">RedisUtil.returnResource(jedis);</div></pre></td></tr></table></figure>
+<h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><p>• redis 是一个支持持久化的内存数据库，redis经常将内存中的数据同步到磁盘来保证持久化。<br>• redis 支持两种持久化方式<br>– Snapshotting（快照）默认方式<br>– Append-only file（aof）方式  </p>
+<h4 id="一、快照"><a href="#一、快照" class="headerlink" title="一、快照"></a>一、快照</h4><p>• 快照是默认的持久化方式,这种方式就是将内存中数据以快照的方式写入到二进制文件中,默认的文件名为dump.rdb。<br>• Snapshotting机制运行原理<br>– redis 调用 fork产生子进程<br>– 父进程继续处理client请求，子进程负责将内存内容写入到临时文件。<br>– 子进程将快照写入临时文件后，用临时文件替换原来的快照文件，然后子进程<br>退出 </p>
+<p>• 设置自动做快照持久化的方式 ,在 n 秒内如果超过 m 个 key被修改就自动做快照.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">save 900 1 </div><div class="line">#900 秒内如果超过 1 个 key被修改，则发起快照保存</div><div class="line">save 300 10 </div><div class="line">#300 秒内如果超过10个key被修改，则发起快照保存</div><div class="line">save 60 10000</div><div class="line">• dbfilename</div><div class="line">快照备份文件的文件名</div><div class="line">• dir</div><div class="line">数据库快照备份的文件放置的路径</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">dir 快照目录  </div><div class="line">dbfilename dump.rdb  //快照文件名  </div><div class="line">stop-writes-on-bgsave-error yes //出错后是否暂停写操作  </div><div class="line">rdbcompression yes //是否压缩  </div><div class="line"></div><div class="line">save 秒 次 // 要求同时满足条件</div></pre></td></tr></table></figure>
+<h4 id="二、aof"><a href="#二、aof" class="headerlink" title="二、aof"></a>二、aof</h4><p>• 快照方式是在一定间隔时间做一次的，如果 redis 意外down 掉，就会丢失最后一次快照后的所有修改。如果应用要求不能丢失任何修改，可以采用 aof 持久化方式 。<br>• 在使用 aof 持久化方式时,redis以日志形式记录服务器的每一个写操作，默认是 appendonly.aof文件。<br>• 当 redis 重启时会通过重新执行文件中保存的写命令来在内存中重建整个数据库的内容。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">• aof配置</div><div class="line">– appendonly yes</div><div class="line">– appendfsync always</div><div class="line">– appendfsync everysec</div><div class="line">– appendfsync no</div><div class="line">• aof文件体积过大时，系统重启恢复数据非常慢，几十G的数据</div><div class="line">可能要几小时才能加载完，为了压缩 aof 的持久化文件，</div><div class="line">redis 提供了 bgrewriteaof 命令。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">appendonly no/yes       是否启用  </div><div class="line">appendfsync always      每次修改就同步  </div><div class="line">            everysec    每秒同步一次  </div><div class="line">            no          从不同步</div></pre></td></tr></table></figure>
+<h3 id="snapshotting-与-AOF-对比"><a href="#snapshotting-与-AOF-对比" class="headerlink" title="snapshotting 与 AOF 对比"></a>snapshotting 与 AOF 对比</h3><table style="margin-top:-420px;background:#002b36;"><br>    <tr style="background:#0083a0;"><br>        <th>持久化技术</th><br>        <th>优势</th><br>        <th>欠缺</th><br>    </tr><br>    <tr><br>        <td>snapshotting</td><br>        <td>1、RDB产生的文件小<br><br>2、RDB恢复快，可以快速将RDB文件传输到其他主机做数据恢复<br><br>3、在进行RDB备份时，主进程只需要创建一个子进程，所有的I/O操作都<br>由子进程完成</td><br>        <td>1、不能完全保证数据安全，在两个备份点之间可能发生数<br>据丢失<br><br>2、当数据量很大时，RDB可能会严重影响性能</td><br>    </tr><br>    <tr><br>        <td>snapshotting</td><br>        <td>1、数据备份粒度更小，数据安全性更高。<br>2、AOF只对日志文件进行追加操作，即使掉电，AOF日志仍然可用。</td><br>        <td>1、AOF文件通常比相同数据集的RDB文件大<br><br>2、AOF写日志可能会很慢</td><br>    </tr><br></table>
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">扫码打赏，你说多少就多少</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/weixin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2017/11/02/Redis内存数据库-二/">Redis内存数据库(二)</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
+        <p><span>发布时间:</span>2017年11月02日 - 19时58分</p>
+        <p><span>最后更新:</span>2017年11月02日 - 20时19分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/02/Redis内存数据库-二/" title="Redis内存数据库(二)">http://www.normantriste.top/2017/11/02/Redis内存数据库-二/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/02/Redis内存数据库-二/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/01/Redis内存数据库/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Redis内存数据库(一)</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis主从复制"><span class="toc-number">1.</span> <span class="toc-text">Redis主从复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redis主从复制原理"><span class="toc-number">2.</span> <span class="toc-text">Redis主从复制原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-使用-Redis–Java连接到Redis服务器"><span class="toc-number">3.</span> <span class="toc-text">Java 使用 Redis–Java连接到Redis服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#事务控制"><span class="toc-number">4.</span> <span class="toc-text">事务控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久化"><span class="toc-number">5.</span> <span class="toc-text">持久化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、快照"><span class="toc-number">5.1.</span> <span class="toc-text">一、快照</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、aof"><span class="toc-number">5.2.</span> <span class="toc-text">二、aof</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#snapshotting-与-AOF-对比"><span class="toc-number">6.</span> <span class="toc-text">snapshotting 与 AOF 对比</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+		<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMTE1OC83NzA3" style="width:90%;margin:5% auto 0 auto;background: #f6f6f6;padding: 0 12px;border-radius: 5px;box-shadow:0px 0px 5px 1px #efefef;">
+	<script type="text/javascript">
+   (function(d, s) {
+       var j, e = d.getElementsByTagName(s)[0];
+
+       if (typeof LivereTower === 'function') { return; }
+
+       j = d.createElement(s);
+       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+       j.async = true;
+
+       e.parentNode.insertBefore(j, e);
+   })(document, 'script');
+	</script>
+<noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2017/11/01/Redis内存数据库/" title="下一篇: Redis内存数据库(一)">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/Redis内存数据库-二/">Redis内存数据库(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/Redis内存数据库/">Redis内存数据库(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/软件开发工程师（Java）题库二/">软件开发工程师（Java）题库二</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/29/软件开发工程师（Java）题库一/">软件开发工程师（Java）题库一</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/接口（二续）/">接口（二续）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/华为面试题收录1/">华为面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/hello-world/">Hello World</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2017 袁晓聪
+            </div>
+            <div class="footer-right">
+                <a href="javascript:;" target="_blank">Welcome</a>  ♥ <a href="javascript:;" target="_blank">Write</a> by triste
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+    <script type="text/javascript">
+      window.onload = function(){
+        document.getElementById("search").onclick = function(){
+            console.log("search")
+            search();
+        }
+      }
+      function search(){
+        (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+        (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+        e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+        })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+        _st('install','A1Pz-LKMXbrzcFg2FWi6','2.0.0');
+      }
+    </script>
+
+  </div>
+</body>
+</html>
