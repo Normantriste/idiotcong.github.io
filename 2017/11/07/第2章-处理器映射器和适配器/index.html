@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Java面试题收录1 | 袁晓聪的个人网站</title>
+  <title>第2章 处理器映射器和适配器 | 袁晓聪的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="面试要了解的问题简单介绍一下您的情况？您怎样描述自己？您为何要选择我公司？您为了这次面试做了哪些准备工作？我们为什么要雇佣您？为什么您要应聘这个职位？您期望的薪金待遇是多少？">
-<meta name="keywords" content="Java,Java面试">
+  <meta name="description" content="非注解配置适配器、映射器[非注解]处理器映射器：根据url请求查找处理器">
+<meta name="keywords" content="Spring,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java面试题收录1">
-<meta property="og:url" content="http://www.normantriste.top/2017/10/01/Java面试题收录1/index.html">
+<meta property="og:title" content="第2章 处理器映射器和适配器">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/07/第2章-处理器映射器和适配器/index.html">
 <meta property="og:site_name" content="袁晓聪的个人网站">
-<meta property="og:description" content="面试要了解的问题简单介绍一下您的情况？您怎样描述自己？您为何要选择我公司？您为了这次面试做了哪些准备工作？我们为什么要雇佣您？为什么您要应聘这个职位？您期望的薪金待遇是多少？">
+<meta property="og:description" content="非注解配置适配器、映射器[非注解]处理器映射器：根据url请求查找处理器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-27T12:48:42.025Z">
+<meta property="og:updated_time" content="2017-11-07T04:10:52.762Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java面试题收录1">
-<meta name="twitter:description" content="面试要了解的问题简单介绍一下您的情况？您怎样描述自己？您为何要选择我公司？您为了这次面试做了哪些准备工作？我们为什么要雇佣您？为什么您要应聘这个职位？您期望的薪金待遇是多少？">
+<meta name="twitter:title" content="第2章 处理器映射器和适配器">
+<meta name="twitter:description" content="非注解配置适配器、映射器[非注解]处理器映射器：根据url请求查找处理器">
   
     <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
   
@@ -236,11 +236,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-Java面试题收录1" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-第2章-处理器映射器和适配器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/01/Java面试题收录1/" class="article-date">
-      <time datetime="2017-10-01T12:18:00.000Z" itemprop="datePublished">2017-10-01</time>
+      <a href="/2017/11/07/第2章-处理器映射器和适配器/" class="article-date">
+      <time datetime="2017-11-07T04:09:00.000Z" itemprop="datePublished">2017-11-07</time>
 </a>
     </div>
   
@@ -253,7 +253,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java面试题收录1
+      第2章 处理器映射器和适配器
     </h1>
   
 
@@ -262,13 +262,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/框架/">框架</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java面试/">Java面试</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -278,11 +278,16 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h3 id="面试要了解的问题"><a href="#面试要了解的问题" class="headerlink" title="面试要了解的问题"></a>面试要了解的问题</h3><p>简单介绍一下您的情况？<br>您怎样描述自己？<br>您为何要选择我公司？<br>您为了这次面试做了哪些准备工作？<br>我们为什么要雇佣您？<br>为什么您要应聘这个职位？<br>您期望的薪金待遇是多少？<br><a id="more"></a><br>什么对您来说更加重要 — 工作还是金钱？<br>您期望从此职业中获得什么 — 金钱、声望还是事业成就感？<br>如果其他公司为您提供了更高的薪水，您会离开我公司吗？<br>您生活的最终目标是什么？<br>您怎样做好准备来实现这些目标？<br>您为何选择这类职业？<br>除了计算机之外，您还有什么其它兴趣？<br>您有哪些强项？<br>您的弱点有哪些？<br>您认为您能在我们公司发挥所长吗<br>以前您是否经常变换工作地点？<br>您为何要离开以前的工作单位？<br>您上一个工作的职责是什么？<br>您上一个工作的薪水是多少？<br>为什么计算机突然之间变得如此重要？<br>为什么您感觉需要学习计算机？<br>您认为计算机会使人们变得无用吗？<br>计算机在未来的某个时候会发展到能够思考吗？  </p>
-<h3 id="专业知识问答："><a href="#专业知识问答：" class="headerlink" title="专业知识问答："></a>专业知识问答：</h3><p>1.如何实现线程?<br>2.JSP应用中,重定向有些什么方法?<br>3.JSP的对象Request中的getparameter方法与session对象中的getAttribute方法的区别?(两对象应用之间的区别?)<br>4.如何加入Session对象?<br>5.Java开发包有些什么开发工具?<br>6.如何实现Jsp页面与数据库的连接(jdbc-odbc桥)?实现连接时要用到哪些类?<br>7.如何构造List对象,用什么方法插入和取得List项目中数据项?<br>8.Session的生命期多长?(参阅Session对象的一些属性设置)<br>9.简述你所熟悉的一些web server.<br>10.如果要使一个程序在网络上传接,要实现什么接口?<br>11.JDBC中如何控制一个事务？<br>12.如何实现JSP程序参数之间的传递？  </p>
-<h3 id="主要知识点：（请做答）"><a href="#主要知识点：（请做答）" class="headerlink" title="主要知识点：（请做答）"></a>主要知识点：（请做答）</h3><p>1、Java的基本数据类型<br>2、ava语言的优点<br>3、字符及字符串和其他数据类型之间的转换<br>4、对象和类的概念，类的继承、重载、多态<br>5、类的访问控制及其区别<br>6、接口和抽象类的概念及区别<br>7、集合的概念及几种类型，基类及接口<br>8、简单的数据的存储过程<br>9、JDBC创建的几个步骤<br>10、Statement、PrepareStatement、CallableStatement区别<br>11、Socket网络连接&lt;一般都是服务端&gt;<br>12、I/O接口的几种类型<br>13、JSP与Servlet的区别<br>14、JSP的内置对象及作用域<br>15、JSP和Servlet的页面转发和控制的区别<br>16、Servlet的生命周期<br>17、Web框架  </p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>1、编程语言基本概念（编程风格和语言概念是考察的重点内容）。<br>2、数据结构（这是计算机编程的基础，肯定是必考的，但是在一个小时内不可能会考复杂的算法，主要是考察您的解决问题的思路）。<br>3、网络（最基本的要掌握TCP/IP，包括协议原理和编程）<br>4、操作系统（考一些基本的概念如进程调度，内存管理等）</p>
-
+        <h2 id="非注解配置适配器、映射器"><a href="#非注解配置适配器、映射器" class="headerlink" title="非注解配置适配器、映射器"></a>非注解配置适配器、映射器</h2><h3 id="非注解-处理器映射器：根据url请求查找处理器"><a href="#非注解-处理器映射器：根据url请求查找处理器" class="headerlink" title="[非注解]处理器映射器：根据url请求查找处理器"></a>[非注解]处理器映射器：根据url请求查找处理器</h3><a id="more"></a>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--方式一：BenaNameUrlHandlerMapping 根据bean的name属性值匹配URL地址--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!--方式二：SimpleUrlHandlerMapping 根据bean的id属性值匹配URL地址 </span></div><div class="line"><span class="comment">            属于方式一的增强版，与方式一可以共存</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mappings"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">props</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="name">prop</span> <span class="attr">key</span>=<span class="string">"/hello2.action"</span>&gt;</span><span class="tag">&lt;/<span class="name">prop</span>&gt;</span><span class="comment">&lt;!-- key：url地址 value：id属性值--&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="name">props</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 处理器：负责执行后台的代码 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"/hello2.action"</span> <span class="attr">name</span>=<span class="string">"/hello.action"</span> <span class="attr">class</span>=<span class="string">"controller.HelloController"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="非注解-处理器适配器-：负责根据指定规则执行处理器"><a href="#非注解-处理器适配器-：负责根据指定规则执行处理器" class="headerlink" title="[非注解]处理器适配器  ：负责根据指定规则执行处理器"></a>[非注解]处理器适配器  ：负责根据指定规则执行处理器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">    方式一：SimpleControllerHandlerAdapter:适配执行所有的实现了</span></div><div class="line"><span class="comment">            org.springframework.web.servlet.mvc.Controller接口的类</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- </span></div><div class="line"><span class="comment">    方式二：HttpRequestHandlerAdapter:适配执行所有的实现了org.springframework.web.servlet.mvc.HttpRequestHandler接口的类，与方式一相同</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="注解配置适配器、映射器"><a href="#注解配置适配器、映射器" class="headerlink" title="注解配置适配器、映射器"></a>注解配置适配器、映射器</h2><h3 id="注解配置适配器"><a href="#注解配置适配器" class="headerlink" title="注解配置适配器"></a>注解配置适配器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="注解配置映射器"><a href="#注解配置映射器" class="headerlink" title="注解配置映射器"></a>注解配置映射器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Controller</span> <span class="comment">//表示该类为处理器(控制器)</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloController</span></span>&#123;</div><div class="line">    </div><div class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/hello"</span>) <span class="comment">//代表方法的访问路径</span></div><div class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">hello</span><span class="params">()</span></span>&#123;</div><div class="line">       ModelAndView mav = <span class="keyword">new</span> ModelAndView();</div><div class="line">       mav.setObject(<span class="string">"message"</span>,<span class="string">"hello,注解controller"</span>);</div><div class="line">       mav.setViewName(<span class="string">"/main.jsp"</span>);</div><div class="line">       <span class="keyword">return</span> mav;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="替换以上方式-注解配置适配器和映射器"><a href="#替换以上方式-注解配置适配器和映射器" class="headerlink" title="替换以上方式 注解配置适配器和映射器"></a>替换以上方式 注解配置适配器和映射器</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 在配置文件上方加入</span></div><div class="line"><span class="comment">     xmlns:mvc="http://www.springframework.org/schema/mvc"</span></div><div class="line"><span class="comment">     在xsi:schemaLocation="http://www.springframework.org/schema/mvc</span></div><div class="line"><span class="comment">                           http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd"</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span>&gt;</span><span class="tag">&lt;/<span class="name">mvc:annotation-driven</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="批量管理处理器"><a href="#批量管理处理器" class="headerlink" title="批量管理处理器"></a>批量管理处理器</h2><h3 id="批量扫描包中的组件"><a href="#批量扫描包中的组件" class="headerlink" title="批量扫描包中的组件"></a>批量扫描包中的组件</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 在配置文件上方加入</span></div><div class="line"><span class="comment">     xmlns:context="http://www.springframework.org/schema/context"</span></div><div class="line"><span class="comment">     在xsi:schemaLocation="http://www.springframework.org/schema/context</span></div><div class="line"><span class="comment">                           http://www.springframework.org/schema/context/spring-context-4.1.xsd"</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="comment">&lt;!-- 批量扫描controller包中的组件(类需要用@Controller修饰，可替换以上bean的定义语句)--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"controller"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></div></pre></td></tr></table></figure>
+<h3 id="bean批量扫描"><a href="#bean批量扫描" class="headerlink" title="bean批量扫描"></a>bean批量扫描</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 扫描com.xxx包下面的组件，</span></div><div class="line"><span class="comment">@Controller：处理器</span></div><div class="line"><span class="comment">@Service：业务逻辑层</span></div><div class="line"><span class="comment">@Repository（仓库）：数据持久层</span></div><div class="line"><span class="comment">@Component：泛指组件，用于不明确组件的注解</span></div><div class="line"><span class="comment">--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.xxx"</span>&gt;</span><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="视图解析器前后缀配置"><a href="#视图解析器前后缀配置" class="headerlink" title="视图解析器前后缀配置"></a>视图解析器前后缀配置</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 前缀 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 后缀 --&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -337,13 +342,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></p>
+        <p><span>本文标题:</span><a href="/2017/11/07/第2章-处理器映射器和适配器/">第2章 处理器映射器和适配器</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
-        <p><span>发布时间:</span>2017年10月01日 - 20时18分</p>
-        <p><span>最后更新:</span>2017年10月27日 - 20时48分</p>
+        <p><span>发布时间:</span>2017年11月07日 - 12时09分</p>
+        <p><span>最后更新:</span>2017年11月07日 - 12时10分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/10/01/Java面试题收录1/" title="Java面试题收录1">http://www.normantriste.top/2017/10/01/Java面试题收录1/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/10/01/Java面试题收录1/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/07/第2章-处理器映射器和适配器/" title="第2章 处理器映射器和适配器">http://www.normantriste.top/2017/11/07/第2章-处理器映射器和适配器/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/07/第2章-处理器映射器和适配器/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -356,18 +361,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/10/25/Spring框架-IOC容器（一）/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/07/第3章-映射请求和返回值/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          IOC容器（一）
+          第3章 映射请求和返回值
         
       </div>
     </a>
   
   
-    <a href="/2017/10/01/华为面试题收录1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">华为面试题收录1</div>
+    <a href="/2017/11/07/第1章-SpringMVC概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第1章 SpringMVC概述</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -378,7 +383,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#面试要了解的问题"><span class="toc-number">1.</span> <span class="toc-text">面试要了解的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#专业知识问答："><span class="toc-number">2.</span> <span class="toc-text">专业知识问答：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主要知识点：（请做答）"><span class="toc-number">3.</span> <span class="toc-text">主要知识点：（请做答）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#非注解配置适配器、映射器"><span class="toc-number">1.</span> <span class="toc-text">非注解配置适配器、映射器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#非注解-处理器映射器：根据url请求查找处理器"><span class="toc-number">1.1.</span> <span class="toc-text">[非注解]处理器映射器：根据url请求查找处理器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非注解-处理器适配器-：负责根据指定规则执行处理器"><span class="toc-number">1.2.</span> <span class="toc-text">[非注解]处理器适配器  ：负责根据指定规则执行处理器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注解配置适配器、映射器"><span class="toc-number">2.</span> <span class="toc-text">注解配置适配器、映射器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#注解配置适配器"><span class="toc-number">2.1.</span> <span class="toc-text">注解配置适配器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注解配置映射器"><span class="toc-number">2.2.</span> <span class="toc-text">注解配置映射器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#替换以上方式-注解配置适配器和映射器"><span class="toc-number">2.3.</span> <span class="toc-text">替换以上方式 注解配置适配器和映射器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#批量管理处理器"><span class="toc-number">3.</span> <span class="toc-text">批量管理处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#批量扫描包中的组件"><span class="toc-number">3.1.</span> <span class="toc-text">批量扫描包中的组件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bean批量扫描"><span class="toc-number">3.2.</span> <span class="toc-text">bean批量扫描</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#视图解析器前后缀配置"><span class="toc-number">4.</span> <span class="toc-text">视图解析器前后缀配置</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -448,13 +453,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/10/25/Spring框架-IOC容器（一）/" title="上一篇: IOC容器（一）">
+            <a href="/2017/11/07/第3章-映射请求和返回值/" title="上一篇: 第3章 映射请求和返回值">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/10/01/华为面试题收录1/" title="下一篇: 华为面试题收录1">
+            <a href="/2017/11/07/第1章-SpringMVC概述/" title="下一篇: 第1章 SpringMVC概述">
                 <i class="fa fa-angle-right"></i>
             </a>
         

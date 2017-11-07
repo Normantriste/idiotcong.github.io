@@ -148,7 +148,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 13.33px;">Redis</a> <a href="/tags/Spring/" style="font-size: 16.67px;">Spring</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
+                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 13.33px;">Redis</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 16.67px;">SpringMVC</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
                     </div>
                 </section>
                 
@@ -235,6 +235,276 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-接口（二续）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/28/接口（二续）/" class="article-date">
+      <time datetime="2017-10-28T01:34:00.000Z" itemprop="datePublished">2017-10-28</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/28/接口（二续）/">接口（二续）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h4 id="一、Aware相关接口-不建议使用"><a href="#一、Aware相关接口-不建议使用" class="headerlink" title="一、Aware相关接口(不建议使用)"></a>一、Aware相关接口(不建议使用)</h4><p><strong>BeanNameAware接口:</strong><br>bean可以在初始化时获得容器中定义的名字<br><strong>BeanFactoryAware接口:</strong><br>BeanFactory容器的bean得到spring容器的引用<br><strong>ApplicationContextAware接口:</strong><br>ApplicationContext容器的bean得到Spring容器的引用</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/28/接口（二续）/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spring框架-IOC容器（二）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/27/Spring框架-IOC容器（二）/" class="article-date">
+      <time datetime="2017-10-27T06:01:00.000Z" itemprop="datePublished">2017-10-27</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="bean实例化"><a href="#bean实例化" class="headerlink" title="bean实例化"></a>bean实例化</h2><h3 id="用构造器来实例化："><a href="#用构造器来实例化：" class="headerlink" title="用构造器来实例化："></a>用构造器来实例化：</h3><p>&emsp;&emsp;需要指定class属性(常用)<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!--IUserDao userDao = new UserDaoImpl();--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"userDao"</span> <span class="attr">class</span>=<span class="string">"spring.UserDaoImpl"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure></p>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/27/Spring框架-IOC容器（二）/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Spring框架-IOC容器（一）" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/25/Spring框架-IOC容器（一）/" class="article-date">
+      <time datetime="2017-10-25T07:47:00.000Z" itemprop="datePublished">2017-10-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="Ioc-控制反转-依赖注入-容器"><a href="#Ioc-控制反转-依赖注入-容器" class="headerlink" title="Ioc(控制反转/依赖注入)容器"></a>Ioc(控制反转/依赖注入)容器</h2><h3 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h3><p>(建议使用这种方式获取容器)<br>1.继承了BeanFactory接口，是BenaFactory功能的延展<br>2.尽可能早的初始化Bean<br>3.支持国际化<br>4.支持事件监听机制<br>5.提供通用的方式获取资源</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/25/Spring框架-IOC容器（一）/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-Java面试题收录1" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/10/01/Java面试题收录1/" class="article-date">
+      <time datetime="2017-10-01T12:18:00.000Z" itemprop="datePublished">2017-10-01</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h3 id="面试要了解的问题"><a href="#面试要了解的问题" class="headerlink" title="面试要了解的问题"></a>面试要了解的问题</h3><p>简单介绍一下您的情况？<br>您怎样描述自己？<br>您为何要选择我公司？<br>您为了这次面试做了哪些准备工作？<br>我们为什么要雇佣您？<br>为什么您要应聘这个职位？<br>您期望的薪金待遇是多少？<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java面试/">Java面试</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/10/01/Java面试题收录1/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-华为面试题收录1" class="article article-type-post" itemscope itemprop="blogPost">
   
