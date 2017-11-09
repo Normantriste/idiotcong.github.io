@@ -3,20 +3,37 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | 袁晓聪的个人网站</title>
+  <title>第5章 数据校验 | 袁晓聪的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to myBlog! This is your very first post.  Hello Word">
-<meta name="keywords" content="helloworld">
+  <meta name="description" content="数据校验概述• 项目中，通常使用较多是前端的校验，比如页面中js校验。对于安全要求较高点建议在服务端进行校验。">
+<meta name="keywords" content="Spring,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.normantriste.top/2017/10/01/hello-world/index.html">
+<meta property="og:title" content="第5章 数据校验">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/09/第5章-数据校验/index.html">
 <meta property="og:site_name" content="袁晓聪的个人网站">
-<meta property="og:description" content="Welcome to myBlog! This is your very first post.  Hello Word">
+<meta property="og:description" content="数据校验概述• 项目中，通常使用较多是前端的校验，比如页面中js校验。对于安全要求较高点建议在服务端进行校验。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-21T12:18:25.154Z">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%AF%BC%E5%85%A5jar.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%85%8D%E7%BD%AE%E6%A0%A1%E9%AA%8C%E5%99%A8.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%85%8D%E7%BD%AE%E6%A0%A1%E9%AA%8C%E5%99%A82.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_pojo.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%8D%95%E6%8D%89%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%8D%95%E6%8D%89%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF2.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%98%BE%E7%A4%BA%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C1.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C2.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C3.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE1.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE2.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE3.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE4.png">
+<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE5.png">
+<meta property="og:updated_time" content="2017-11-09T00:52:00.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to myBlog! This is your very first post.  Hello Word">
+<meta name="twitter:title" content="第5章 数据校验">
+<meta name="twitter:description" content="数据校验概述• 项目中，通常使用较多是前端的校验，比如页面中js校验。对于安全要求较高点建议在服务端进行校验。">
+<meta name="twitter:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%AF%BC%E5%85%A5jar.png">
   
     <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
   
@@ -256,11 +273,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-第5章-数据校验" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/01/hello-world/" class="article-date">
-      <time datetime="2017-10-01T01:42:00.000Z" itemprop="datePublished">2017-10-01</time>
+      <a href="/2017/11/09/第5章-数据校验/" class="article-date">
+      <time datetime="2017-11-09T00:50:00.000Z" itemprop="datePublished">2017-11-09</time>
 </a>
     </div>
   
@@ -273,7 +290,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      第5章 数据校验
     </h1>
   
 
@@ -282,13 +299,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    <a class="article-category-link" href="/categories/框架/">框架</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/helloworld/">helloworld</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -298,8 +315,27 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="http://www.normantriste.top/Home">myBlog</a>! This is your very first post. </p>
-<h2 id="Hello-Word"><a href="#Hello-Word" class="headerlink" title="Hello Word"></a>Hello Word</h2>
+        <h2 id="数据校验概述"><a href="#数据校验概述" class="headerlink" title="数据校验概述"></a>数据校验概述</h2><p>• 项目中，通常使用较多是前端的校验，比如页面中js校验。对于安全要求较高点建议在服务端进行校验。<br><a id="more"></a><br>• 服务端校验：<br>– 控制层conroller：校验页面请求的参数的合法性。在服务端控制层conroller校验，不区分客户端类型（浏览器、手机客户端、远程调用）<br>– 业务层service（使用较多）：主要校验关键业务参数，仅限于service接口中使用的参数。<br>– 持久层dao：一般是不校验的。  </p>
+<p>• springmvc使用hibernate的校验框架validation<br>• 校验思路：<br>– 页面提交请求的参数，请求到controller方法中，使用validation进行校验。<br>– 如果校验出错，将错误信息展示到页面。  </p>
+<h2 id="数据校验步骤"><a href="#数据校验步骤" class="headerlink" title="数据校验步骤"></a>数据校验步骤</h2><p>• springmvc数据校验步骤<br>– 导入校验jar文件<br>– 配置校验器<br>– 校验器注入到处理器适配器中<br>– 添加校验规则<br>– 错误信息文件<br>– 捕获错误信息<br>– 显示错误信息  </p>
+<h3 id="导入校验jar文件"><a href="#导入校验jar文件" class="headerlink" title="导入校验jar文件"></a>导入校验jar文件</h3><p>– hibernate的校验框架validation所需要jar包<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%AF%BC%E5%85%A5jar.png" alt="image"></p>
+<h3 id="配置校验器"><a href="#配置校验器" class="headerlink" title="配置校验器"></a>配置校验器</h3><p>– 在springmvc配置文件中配置<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%85%8D%E7%BD%AE%E6%A0%A1%E9%AA%8C%E5%99%A8.png" alt="image"></p>
+<h3 id="校验器注入到处理器适配器中"><a href="#校验器注入到处理器适配器中" class="headerlink" title="校验器注入到处理器适配器中"></a>校验器注入到处理器适配器中</h3><p>– 在springmvc配置文件中配置<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%85%8D%E7%BD%AE%E6%A0%A1%E9%AA%8C%E5%99%A82.png" alt="image"></p>
+<h3 id="pojo中添加校验规则"><a href="#pojo中添加校验规则" class="headerlink" title="pojo中添加校验规则"></a>pojo中添加校验规则</h3><p>在ItemsCustom.java中添加<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_pojo.png" alt="image"></p>
+<h3 id="错误信息文件"><a href="#错误信息文件" class="headerlink" title="错误信息文件"></a>错误信息文件</h3><p>– 在CustomValidationMessages.properties配置校验错误信息<br>– 把配置文件放到类路径中<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E6%96%87%E4%BB%B6.png" alt="image"></p>
+<h3 id="捕获错误信息"><a href="#捕获错误信息" class="headerlink" title="捕获错误信息"></a>捕获错误信息</h3><p>– 在controller方法中捕获<br>– 添加@Validated表示在对items参数绑定时进行校验，校验信息写入BindingResult中，在要校验的pojo后边添加BingdingResult，一个BindingResult对应一个pojo，且BingdingResult放在pojo的后边。<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%8D%95%E6%8D%89%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF.png" alt="image"><br>– 在controller中将错误信息传到页面即可<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%8D%95%E6%8D%89%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF2.png" alt="image"></p>
+<h3 id="显示错误信息"><a href="#显示错误信息" class="headerlink" title="显示错误信息"></a>显示错误信息</h3><p>– 在jsp页面中将错误信息展示<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%98%BE%E7%A4%BA%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF.png" alt="image"></p>
+<h2 id="分组校验"><a href="#分组校验" class="headerlink" title="分组校验"></a>分组校验</h2><p>• 在pojo中定义校验规则，而pojo是被多个controller所共用，当不同的controller方法对同一个pojo进行校验，但是每个controller方法需要不同的校验。<br>• 解决方法：<br>– 定义多个校验分组（其实是一个java接口），分组中定义<br>有哪些规则<br>– 每个controller方法使用不同的校验分组  </p>
+<h3 id="定义校验分组"><a href="#定义校验分组" class="headerlink" title="定义校验分组"></a>定义校验分组</h3><p>– 分组就是一个标识，这里定义一个接口<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C1.png" alt="image"></p>
+<h3 id="在校验规则中添加分组"><a href="#在校验规则中添加分组" class="headerlink" title="在校验规则中添加分组"></a>在校验规则中添加分组</h3><p>– 指定分组ValidGroup1，表示此@Size校验只适用ValidGroup1校验<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C2.png" alt="image"></p>
+<h3 id="在controller方法中使用指定分组的校验"><a href="#在controller方法中使用指定分组的校验" class="headerlink" title="在controller方法中使用指定分组的校验"></a>在controller方法中使用指定分组的校验</h3><p>在@Validated中添加value={ValidGroup1.class}表示商品修改使用了ValidGroup1分组校验规则可以指定多个分组，中间用逗号分隔<br>@Validated(value={ValidGroup1.class，ValidGroup2.class })<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E5%88%86%E7%BB%84%E6%A0%A1%E9%AA%8C3.png" alt="image"></p>
+<h2 id="校验注解"><a href="#校验注解" class="headerlink" title="校验注解"></a>校验注解</h2><p>•@Null 被注释的元素必须为 null<br>•@NotNull 被注释的元素必须不为 null<br>•@AssertTrue 被注释的元素必须为 true<br>•@AssertFalse 被注释的元素必须为 false<br>•@Min(value) 被注释的元素必须是一个数字，其值必须大于等于指定的最小<br>值<br>•@Max(value) 被注释的元素必须是一个数字，其值必须小于等于指定的最大<br>值<br>•@DecimalMin(value)   被注释的元素必须是一个数字，其值必须大于等于指定的最小值<br>•@DecimalMax(value)   被注释的元素必须是一个数字，其值必须小于等于指定的最大值<br>•@Size(max=, min=) 被注释的元素的大小必须在指定的范围内<br>•@Digits (integer,fraction)被注释的元素必须是一个数字，其值必须在可接受的范围内<br>•@Past 被注释的元素必须是一个过去的日期<br>•@Future 被注释的元素必须是一个将来的日期<br>•@Pattern(regex=,flag=) 被注释的元素必须符合指定的正则表达式<br>•@NotBlank(message =) 验证字符串非null，且长度必须大于0<br>•@Email 被注释的元素必须是电子邮箱地址<br>•@Length(min=,max=) 被注释的字符串的大小必须在指定的范围内<br>•@NotEmpty 被注释的字符串的必须非空<br>•@Range(min=,max=,message=) 被注释的元素必须在合适的范围内  </p>
+<h2 id="数据回显"><a href="#数据回显" class="headerlink" title="数据回显"></a>数据回显</h2><p>– 表单提交失败需要再回到表单页面重新填写，原来提交的数据需要重新在页面上显示。<br>– 简单数据类型<br>– pojo类型  </p>
+<h3 id="简单数据类型"><a href="#简单数据类型" class="headerlink" title="简单数据类型"></a>简单数据类型</h3><p>– 对于简单数据类型，如：Integer、String、Float等，使用Model将传入的参数再放到request域实现显示。<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE1.png" alt="image"></p>
+<h3 id="pojo数据类型"><a href="#pojo数据类型" class="headerlink" title="pojo数据类型"></a>pojo数据类型</h3><p>– springmvc默认支持pojo数据回显<br>– springmvc自动将形参中的pojo重新放回request域中，request的key为pojo的类名（首字母小写）<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE2.png" alt="image"><br>springmvc自动将itemsCustom放回request，相当于调用下边的代码：<br>model.addAttribute(“itemsCustom”, itemsCustom);  </p>
+<p>– 如果key不是pojo的类名(首字母小写)，可以使用@ModelAttribute完成数据回显。<br>• @ModelAttribute作用如下：<br>– 如果key不是pojo的类名(首字母小写)，可以使用@ModelAttribute完成数据回显。<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE3.png" alt="image"><br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE4.png" alt="image"></p>
+<p>– 使用最简单方法使用model，可以不用@ModelAttribute<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E6%95%B0%E6%8D%AE%E6%A0%A1%E9%AA%8C_%E6%95%B0%E6%8D%AE%E5%9B%9E%E6%98%BE5.png" alt="image"></p>
+
       
       
         <div class="page-reward">
@@ -354,13 +390,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/10/01/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2017/11/09/第5章-数据校验/">第5章 数据校验</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
-        <p><span>发布时间:</span>2017年10月01日 - 09时42分</p>
-        <p><span>最后更新:</span>2017年10月21日 - 20时18分</p>
+        <p><span>发布时间:</span>2017年11月09日 - 08时50分</p>
+        <p><span>最后更新:</span>2017年11月09日 - 08时52分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/10/01/hello-world/" title="Hello World">http://www.normantriste.top/2017/10/01/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/10/01/hello-world/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/09/第5章-数据校验/" title="第5章 数据校验">http://www.normantriste.top/2017/11/09/第5章-数据校验/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/09/第5章-数据校验/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -373,15 +409,20 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/10/01/华为面试题收录1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/09/第7章-文件上传和json数据交互/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption"><</strong>
       <div class="article-nav-title">
         
-          华为面试题收录1
+          第7章 文件上传和json数据交互
         
       </div>
     </a>
   
+  
+    <a href="/2017/11/07/第4章-参数绑定/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第4章 参数绑定</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -390,7 +431,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-Word"><span class="toc-number">1.</span> <span class="toc-text">Hello Word</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验概述"><span class="toc-number">1.</span> <span class="toc-text">数据校验概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据校验步骤"><span class="toc-number">2.</span> <span class="toc-text">数据校验步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#导入校验jar文件"><span class="toc-number">2.1.</span> <span class="toc-text">导入校验jar文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置校验器"><span class="toc-number">2.2.</span> <span class="toc-text">配置校验器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#校验器注入到处理器适配器中"><span class="toc-number">2.3.</span> <span class="toc-text">校验器注入到处理器适配器中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pojo中添加校验规则"><span class="toc-number">2.4.</span> <span class="toc-text">pojo中添加校验规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#错误信息文件"><span class="toc-number">2.5.</span> <span class="toc-text">错误信息文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获错误信息"><span class="toc-number">2.6.</span> <span class="toc-text">捕获错误信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#显示错误信息"><span class="toc-number">2.7.</span> <span class="toc-text">显示错误信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分组校验"><span class="toc-number">3.</span> <span class="toc-text">分组校验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义校验分组"><span class="toc-number">3.1.</span> <span class="toc-text">定义校验分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在校验规则中添加分组"><span class="toc-number">3.2.</span> <span class="toc-text">在校验规则中添加分组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在controller方法中使用指定分组的校验"><span class="toc-number">3.3.</span> <span class="toc-text">在controller方法中使用指定分组的校验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#校验注解"><span class="toc-number">4.</span> <span class="toc-text">校验注解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据回显"><span class="toc-number">5.</span> <span class="toc-text">数据回显</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单数据类型"><span class="toc-number">5.1.</span> <span class="toc-text">简单数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pojo数据类型"><span class="toc-number">5.2.</span> <span class="toc-text">pojo数据类型</span></a></li></ol></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -460,13 +501,15 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/10/01/华为面试题收录1/" title="上一篇: 华为面试题收录1">
+            <a href="/2017/11/09/第7章-文件上传和json数据交互/" title="上一篇: 第7章 文件上传和json数据交互">
                 <i class="fa fa-angle-left"></i>
             </a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/11/07/第4章-参数绑定/" title="下一篇: 第4章 参数绑定">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/补充-Spring编码过滤器/">(补充)Spring编码过滤器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第7章-RESTful支持/">第7章 RESTful支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第7章-文件上传和json数据交互/">第7章 文件上传和json数据交互</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第5章-数据校验/">第5章 数据校验</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第4章-参数绑定/">第4章 参数绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第3章-映射请求和返回值/">第3章 映射请求和返回值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第2章-处理器映射器和适配器/">第2章 处理器映射器和适配器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第1章-SpringMVC概述/">第1章 SpringMVC概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/Redis内存数据库-二/">Redis内存数据库(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/Redis内存数据库/">Redis内存数据库(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/软件开发工程师（Java）题库二/">软件开发工程师（Java）题库二</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/29/软件开发工程师（Java）题库一/">软件开发工程师（Java）题库一</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/接口（二续）/">接口（二续）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/华为面试题收录1/">华为面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/hello-world/">Hello World</a></li></ul>

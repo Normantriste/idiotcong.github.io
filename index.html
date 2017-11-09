@@ -126,6 +126,8 @@
                         
                             <li><a href="/categories/框架">Java框架</a></li>
                         
+                            <li><a href="/tags/题库">考证题库</a></li>
+                        
                             <li><a href="/categories/随笔">随笔</a></li>
                         
                         </ul>
@@ -137,9 +139,17 @@
                             
                                 <a class="fl github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
                             
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
                                 <a class="fl weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
                             
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                            
                                 <a class="fl QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                            
+                                <a class="fl wechat" target="_blank" href="#" title="wechat">wechat</a>
                             
                         </ul>
                     </nav>
@@ -148,7 +158,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Java面试/" style="font-size: 13.33px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 13.33px;">Redis</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 16.67px;">SpringMVC</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a>
+                        <a href="/tags/Java/" style="font-size: 17.5px;">Java</a> <a href="/tags/Java面试/" style="font-size: 12.5px;">Java面试</a> <a href="/tags/Redis/" style="font-size: 12.5px;">Redis</a> <a href="/tags/Spring/" style="font-size: 20px;">Spring</a> <a href="/tags/SpringMVC/" style="font-size: 15px;">SpringMVC</a> <a href="/tags/helloworld/" style="font-size: 10px;">helloworld</a> <a href="/tags/题库/" style="font-size: 12.5px;">题库</a>
                     </div>
                 </section>
                 
@@ -213,6 +223,8 @@
                 
                     <li><a href="/categories/框架">Java框架</a></li>
                 
+                    <li><a href="/tags/题库">考证题库</a></li>
+                
                     <li><a href="/categories/随笔">随笔</a></li>
                 
                 <div class="clearfix"></div>
@@ -225,9 +237,17 @@
                     
                         <a class="github" target="_blank" href="https://github.com/idiotcong" title="github">github</a>
                     
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
                         <a class="weibo" target="_blank" href="http://weibo.com/idiotcong" title="weibo">weibo</a>
                     
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+                    
                         <a class="QQ" target="_blank" href="http://w.qq.com/" title="QQ">QQ</a>
+                    
+                        <a class="wechat" target="_blank" href="#" title="wechat">wechat</a>
                     
                 </div>
             </nav>
@@ -235,6 +255,269 @@
     </div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-补充-Spring编码过滤器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/补充-Spring编码过滤器/" class="article-date">
+      <time datetime="2017-11-09T00:55:00.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/补充-Spring编码过滤器/">(补充)Spring编码过滤器</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <h3 id="在web-xml中添加配置"><a href="#在web-xml中添加配置" class="headerlink" title="在web.xml中添加配置"></a>在web.xml中添加配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 编码过滤器 --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">filter</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 指定编码--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+    </div>
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-第7章-RESTful支持" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/第7章-RESTful支持/" class="article-date">
+      <time datetime="2017-11-09T00:53:00.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/第7章-RESTful支持/">第7章 RESTful支持</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="RESTful支持"><a href="#RESTful支持" class="headerlink" title="RESTful支持"></a>RESTful支持</h2><h3 id="什么是RESUful"><a href="#什么是RESUful" class="headerlink" title="什么是RESUful"></a>什么是RESUful</h3><p>– RESTful（即Representational State Transfer的缩写）<br>其实是一个开发理念，是对http的很好的诠释。<br>– RESTful架构，就是目前最流行的一种互联网软件架构。它结构清晰、符合标准、易于理解、扩展方便，所以得到越<br>来越多网站的采用。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/11/09/第7章-RESTful支持/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-第7章-文件上传和json数据交互" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/第7章-文件上传和json数据交互/" class="article-date">
+      <time datetime="2017-11-09T00:52:00.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/第7章-文件上传和json数据交互/">第7章 文件上传和json数据交互</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="文件上传"><a href="#文件上传" class="headerlink" title="文件上传"></a>文件上传</h2><p>– 导入jar包<br>– 创建虚拟目录<br>– 配置解析器<br>– 编写controller代码<br>– 编写页面代码<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/11/09/第7章-文件上传和json数据交互/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-第5章-数据校验" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2017/11/09/第5章-数据校验/" class="article-date">
+      <time datetime="2017-11-09T00:50:00.000Z" itemprop="datePublished">2017-11-09</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/09/第5章-数据校验/">第5章 数据校验</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <h2 id="数据校验概述"><a href="#数据校验概述" class="headerlink" title="数据校验概述"></a>数据校验概述</h2><p>• 项目中，通常使用较多是前端的校验，比如页面中js校验。对于安全要求较高点建议在服务端进行校验。<br>
+          
+      
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/categories/框架/">框架</a>
+    </div>
+
+
+      
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
+    </div>
+
+      
+        <p class="article-more-link">
+          <a  href="/2017/11/09/第5章-数据校验/#more">阅读全文 >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-第4章-参数绑定" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -618,274 +901,6 @@
       
         <p class="article-more-link">
           <a  href="/2017/11/01/Redis内存数据库/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-软件开发工程师（Java）题库二" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/30/软件开发工程师（Java）题库二/" class="article-date">
-      <time datetime="2017-10-30T08:21:00.000Z" itemprop="datePublished">2017-10-30</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/30/软件开发工程师（Java）题库二/">软件开发工程师（Java）题库二</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>软件开发工程师（Java）题库二<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/10/30/软件开发工程师（Java）题库二/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-软件开发工程师（Java）题库一" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/29/软件开发工程师（Java）题库一/" class="article-date">
-      <time datetime="2017-10-29T15:59:00.000Z" itemprop="datePublished">2017-10-29</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/29/软件开发工程师（Java）题库一/">软件开发工程师（Java）题库一</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <p>软件开发工程师（Java）题库一<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/10/29/软件开发工程师（Java）题库一/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-面向切面编程-AOP" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/28/面向切面编程-AOP/" class="article-date">
-      <time datetime="2017-10-28T07:53:00.000Z" itemprop="datePublished">2017-10-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h3 id="AOP是什么"><a href="#AOP是什么" class="headerlink" title="AOP是什么"></a>AOP是什么</h3><p><strong>面向方面编程（Aspect Oriented Programming）</strong><br>&emsp;&emsp;Spring的一个关键的组件就是 AOP框架。 尽管如此，Spring IoC容器并不依赖于AOP，这意味着可以自由选择是否使用AOP，AOP提供强大的中间件解决方案，这使得Spring IoC容器更加完善。<br>&emsp;&emsp;Spring AOP的出现是为了取代EJB中的事务机制，它有这种声明式的事务机制，其实AOP的这种思想早就已经有了，并不是一种什么新的技术，也并不是说专门由java这里来实现的 。<br>&emsp;&emsp;面向切面编程（AOP）提供另外一种角度来思考程序结构，通<br>过这种方式弥补了面向对象编程（OOP）的不足。<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/框架/">框架</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/10/28/面向切面编程-AOP/#more">阅读全文 >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-依赖注入的实现（三）" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2017/10/28/依赖注入的实现（三）/" class="article-date">
-      <time datetime="2017-10-28T01:39:00.000Z" itemprop="datePublished">2017-10-28</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <h2 id="依赖注入的实现"><a href="#依赖注入的实现" class="headerlink" title="依赖注入的实现"></a>依赖注入的实现</h2><h3 id="解析IoC和DI"><a href="#解析IoC和DI" class="headerlink" title="解析IoC和DI"></a>解析IoC和DI</h3><h4 id="IOC："><a href="#IOC：" class="headerlink" title="IOC："></a>IOC：</h4><p>– Inversion of Control<br>– Dependency Injection<br>
-          
-      
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/框架/">框架</a>
-    </div>
-
-
-      
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li></ul>
-    </div>
-
-      
-        <p class="article-more-link">
-          <a  href="/2017/10/28/依赖注入的实现（三）/#more">阅读全文 >></a>
         </p>
       
       <div class="clearfix"></div>

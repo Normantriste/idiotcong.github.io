@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | 袁晓聪的个人网站</title>
+  <title>(补充)Spring编码过滤器 | 袁晓聪的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Welcome to myBlog! This is your very first post.  Hello Word">
-<meta name="keywords" content="helloworld">
+  <meta name="description" content="在web.xml中添加配置123456789101112131415161718&amp;lt;!-- 编码过滤器 --&amp;gt;   &amp;lt;filter&amp;gt;      &amp;lt;filter-name&amp;gt;characterEncodingFilter&amp;lt;/filter-name&amp;gt;      &amp;lt;filter-class&amp;gt;org.springframework.web.filte">
+<meta name="keywords" content="Spring,SpringMVC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://www.normantriste.top/2017/10/01/hello-world/index.html">
+<meta property="og:title" content="(补充)Spring编码过滤器">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/09/补充-Spring编码过滤器/index.html">
 <meta property="og:site_name" content="袁晓聪的个人网站">
-<meta property="og:description" content="Welcome to myBlog! This is your very first post.  Hello Word">
+<meta property="og:description" content="在web.xml中添加配置123456789101112131415161718&amp;lt;!-- 编码过滤器 --&amp;gt;   &amp;lt;filter&amp;gt;      &amp;lt;filter-name&amp;gt;characterEncodingFilter&amp;lt;/filter-name&amp;gt;      &amp;lt;filter-class&amp;gt;org.springframework.web.filte">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-21T12:18:25.154Z">
+<meta property="og:updated_time" content="2017-11-09T00:55:55.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to myBlog! This is your very first post.  Hello Word">
+<meta name="twitter:title" content="(补充)Spring编码过滤器">
+<meta name="twitter:description" content="在web.xml中添加配置123456789101112131415161718&amp;lt;!-- 编码过滤器 --&amp;gt;   &amp;lt;filter&amp;gt;      &amp;lt;filter-name&amp;gt;characterEncodingFilter&amp;lt;/filter-name&amp;gt;      &amp;lt;filter-class&amp;gt;org.springframework.web.filte">
   
     <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
   
@@ -256,11 +256,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-补充-Spring编码过滤器" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/10/01/hello-world/" class="article-date">
-      <time datetime="2017-10-01T01:42:00.000Z" itemprop="datePublished">2017-10-01</time>
+      <a href="/2017/11/09/补充-Spring编码过滤器/" class="article-date">
+      <time datetime="2017-11-09T00:55:00.000Z" itemprop="datePublished">2017-11-09</time>
 </a>
     </div>
   
@@ -273,7 +273,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      (补充)Spring编码过滤器
     </h1>
   
 
@@ -282,13 +282,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/随笔/">随笔</a>
+    <a class="article-category-link" href="/categories/框架/">框架</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/helloworld/">helloworld</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -298,8 +298,7 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Welcome to <a href="http://www.normantriste.top/Home">myBlog</a>! This is your very first post. </p>
-<h2 id="Hello-Word"><a href="#Hello-Word" class="headerlink" title="Hello Word"></a>Hello Word</h2>
+        <h3 id="在web-xml中添加配置"><a href="#在web-xml中添加配置" class="headerlink" title="在web.xml中添加配置"></a>在web.xml中添加配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 编码过滤器 --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">filter</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-class</span>&gt;</span>org.springframework.web.filter.CharacterEncodingFilter<span class="tag">&lt;/<span class="name">filter-class</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- 指定编码--&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>encoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">init-param</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>forceEncoding<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span>  </div><div class="line">        <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>true<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;/<span class="name">init-param</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">filter</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;<span class="name">filter-mapping</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">filter-name</span>&gt;</span>characterEncodingFilter<span class="tag">&lt;/<span class="name">filter-name</span>&gt;</span>  </div><div class="line">    <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/*<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span>  </div><div class="line"><span class="tag">&lt;/<span class="name">filter-mapping</span>&gt;</span></div></pre></td></tr></table></figure>
       
       
         <div class="page-reward">
@@ -354,13 +353,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/10/01/hello-world/">Hello World</a></p>
+        <p><span>本文标题:</span><a href="/2017/11/09/补充-Spring编码过滤器/">(补充)Spring编码过滤器</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
-        <p><span>发布时间:</span>2017年10月01日 - 09时42分</p>
-        <p><span>最后更新:</span>2017年10月21日 - 20时18分</p>
+        <p><span>发布时间:</span>2017年11月09日 - 08时55分</p>
+        <p><span>最后更新:</span>2017年11月09日 - 08时55分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/10/01/hello-world/" title="Hello World">http://www.normantriste.top/2017/10/01/hello-world/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/10/01/hello-world/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/09/补充-Spring编码过滤器/" title="(补充)Spring编码过滤器">http://www.normantriste.top/2017/11/09/补充-Spring编码过滤器/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/09/补充-Spring编码过滤器/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -373,15 +372,11 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/10/01/华为面试题收录1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          华为面试题收录1
-        
-      </div>
-    </a>
   
+    <a href="/2017/11/09/第7章-RESTful支持/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第7章 RESTful支持</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
   
 </nav>
 
@@ -390,7 +385,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-Word"><span class="toc-number">1.</span> <span class="toc-text">Hello Word</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#在web-xml中添加配置"><span class="toc-number">1.</span> <span class="toc-text">在web.xml中添加配置</span></a></li></ol>
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -460,13 +455,13 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/10/01/华为面试题收录1/" title="上一篇: 华为面试题收录1">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2017/11/09/第7章-RESTful支持/" title="下一篇: 第7章 RESTful支持">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
     <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/补充-Spring编码过滤器/">(补充)Spring编码过滤器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第7章-RESTful支持/">第7章 RESTful支持</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第7章-文件上传和json数据交互/">第7章 文件上传和json数据交互</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/09/第5章-数据校验/">第5章 数据校验</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第4章-参数绑定/">第4章 参数绑定</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第3章-映射请求和返回值/">第3章 映射请求和返回值</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第2章-处理器映射器和适配器/">第2章 处理器映射器和适配器</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/07/第1章-SpringMVC概述/">第1章 SpringMVC概述</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/02/Redis内存数据库-二/">Redis内存数据库(二)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/01/Redis内存数据库/">Redis内存数据库(一)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/30/软件开发工程师（Java）题库二/">软件开发工程师（Java）题库二</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/29/软件开发工程师（Java）题库一/">软件开发工程师（Java）题库一</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/面向切面编程-AOP/">面向切面编程(AOP)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/依赖注入的实现（三）/">依赖注入的实现（三）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/28/接口（二续）/">接口（二续）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/27/Spring框架-IOC容器（二）/">bean实例化（二）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/25/Spring框架-IOC容器（一）/">IOC容器（一）</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/Java面试题收录1/">Java面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/华为面试题收录1/">华为面试题收录1</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/01/hello-world/">Hello World</a></li></ul>
