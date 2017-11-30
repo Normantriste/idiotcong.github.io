@@ -3,26 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>第4章 参数绑定 | 袁晓聪的个人网站</title>
+  <title>关于Oracle索引 | 袁晓聪的个人网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="参数绑定过程• springmvc参数绑定过程– 从客户端请求key/value数据，经过参数绑定，将key/value数据绑定到controller方法的形参上。– springmvc中，接收页面提交的数据是通过方法形参来接收，而不是在controller类定义成员变量接收。">
-<meta name="keywords" content="Spring,SpringMVC">
+  <meta name="description" content="１．什么是索引？&amp;emsp;&amp;emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第4章 参数绑定">
-<meta property="og:url" content="http://www.normantriste.top/2017/11/07/第4章-参数绑定/index.html">
+<meta property="og:title" content="关于Oracle索引">
+<meta property="og:url" content="http://www.normantriste.top/2017/11/30/关于Oracle索引/index.html">
 <meta property="og:site_name" content="袁晓聪的个人网站">
-<meta property="og:description" content="参数绑定过程• springmvc参数绑定过程– 从客户端请求key/value数据，经过参数绑定，将key/value数据绑定到controller方法的形参上。– springmvc中，接收页面提交的数据是通过方法形参来接收，而不是在controller类定义成员变量接收。">
+<meta property="og:description" content="１．什么是索引？&amp;emsp;&amp;emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A1.png">
-<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A2.png">
-<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A3.png">
-<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A4.png">
-<meta property="og:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A5.png">
-<meta property="og:updated_time" content="2017-11-07T06:38:21.093Z">
+<meta property="og:updated_time" content="2017-11-30T02:54:55.248Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第4章 参数绑定">
-<meta name="twitter:description" content="参数绑定过程• springmvc参数绑定过程– 从客户端请求key/value数据，经过参数绑定，将key/value数据绑定到controller方法的形参上。– springmvc中，接收页面提交的数据是通过方法形参来接收，而不是在controller类定义成员变量接收。">
-<meta name="twitter:image" content="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A1.png">
+<meta name="twitter:title" content="关于Oracle索引">
+<meta name="twitter:description" content="１．什么是索引？&amp;emsp;&amp;emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;">
   
     <link rel="alternative" href="/atom.xml" title="袁晓聪的个人网站" type="application/atom+xml">
   
@@ -262,11 +255,11 @@
         </header>                
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-第4章-参数绑定" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-关于Oracle索引" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2017/11/07/第4章-参数绑定/" class="article-date">
-      <time datetime="2017-11-07T04:11:00.000Z" itemprop="datePublished">2017-11-07</time>
+      <a href="/2017/11/30/关于Oracle索引/" class="article-date">
+      <time datetime="2017-11-30T02:43:00.000Z" itemprop="datePublished">2017-11-30</time>
 </a>
     </div>
   
@@ -279,7 +272,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      第4章 参数绑定
+      关于Oracle索引
     </h1>
   
 
@@ -287,16 +280,8 @@
       
       <div class="article-info article-info-post">
         
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/框架/">框架</a>
-    </div>
-
 
         
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring/">Spring</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SpringMVC/">SpringMVC</a></li></ul>
-    </div>
-
         <div class="clearfix"></div>
       </div>
       
@@ -304,25 +289,18 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="参数绑定过程"><a href="#参数绑定过程" class="headerlink" title="参数绑定过程"></a>参数绑定过程</h2><p>• springmvc参数绑定过程<br>– 从客户端请求key/value数据，经过参数绑定，将key/value数据绑定到controller方法的形参上。<br>– springmvc中，接收页面提交的数据是通过方法形参来接收，而不是在controller类定义成员变量接收。<br><a id="more"></a></p>
-<h2 id="默认支持的类型"><a href="#默认支持的类型" class="headerlink" title="默认支持的类型"></a>默认支持的类型</h2><p>• 处理器形参中添加如下类型的参数，处理适配器会默认识别并进行赋值。<br>– HttpServletRequest<br>• 通过request对象获取请求信息<br>– HttpServletResponse<br>• 通过response处理响应信息<br>– HttpSession<br>• 通过session对象得到session中存放的对象<br>– Model/ModelMap<br>• ModelMap是Model接口的实现类，将model数据填充到request域，向页面传递数据<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">model.addAttribute(<span class="string">"itemsCustom"</span>,itemsCustom);</div><div class="line"><span class="keyword">return</span> <span class="string">"/items/editItems"</span>;</div></pre></td></tr></table></figure></p>
-<h2 id="简单类型绑定"><a href="#简单类型绑定" class="headerlink" title="简单类型绑定"></a>简单类型绑定</h2><p>• 简单类型<br>– 支持整型、字符串、单精度/双精度、布尔型<br>– 当请求的参数名称和处理器形参名称一致时会将请求参数与形参进行绑定。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">editItem</span><span class="params">(Model model,Integer id)</span> <span class="keyword">throws</span> Excception</span>&#123;</div><div class="line">    <span class="comment">//处理器方法</span></div><div class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">editItem</span><span class="params">(Model model,Integer id,Boolean status)</span> <span class="keyword">throws</span> Exception</span></div><div class="line"><span class="function">    <span class="comment">//请求url：</span></span></div><div class="line"><span class="function">    <span class="comment">//Http：//localhost:8080/springmvc/item/editItem.action?id=2&amp;status=false</span></span></div><div class="line"><span class="function">    <span class="comment">//说明：对于布尔类型的参数，请求的参数值为true或false。</span></span></div><div class="line"><span class="function">&#125;</span></div></pre></td></tr></table></figure></p>
-<p>– 通过@RequestParam对简单类型的参数进行绑定。<br>– 如果不使用@RequestParam，要求request传入参数名称和controller方法的形参名称一致，方可绑定成功。<br>– 如果使用@RequestParam，不用限制request传入参数名称和controller方法的形参名称一致。  </p>
-<h3 id="RequestParam的参数"><a href="#RequestParam的参数" class="headerlink" title="@RequestParam的参数"></a>@RequestParam的参数</h3><p>– value：参数名字，即入参的请求参数名字，如<br>&emsp;value=”item_id”表示请求的参数中的名字为item_id的参数的值将传入；<br>– required：是否必须，默认是true，表示请求中一定要有相应的参数，否则将报错<br>– defaultValue：默认值，表示如果请求中没有同名参数时的默认值 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//@RequestParam里边指定request传入参数名称和形参进行绑定。</span></div><div class="line"><span class="comment">//通过required属性指定参数是否必须要传入</span></div><div class="line"><span class="comment">//通过defaultValue可以设置默认值，如果id参数没有传入，将默认值和形参绑定</span></div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">editItem</span><span class="params">(Model model,HttpServletRequest request,</span></span></div><div class="line"><span class="function"><span class="params">        @RequestParam(value=<span class="string">"id"</span>,defaultValue=<span class="string">"2"</span>)</span>Integer idd) <span class="keyword">throws</span> Excception</span>&#123;&#125;</div></pre></td></tr></table></figure>
-<h2 id="POJO类型绑定"><a href="#POJO类型绑定" class="headerlink" title="POJO类型绑定"></a>POJO类型绑定</h2><h3 id="简单POJO绑定"><a href="#简单POJO绑定" class="headerlink" title="简单POJO绑定"></a>简单POJO绑定</h3><p>– 将pojo对象中的属性名与传递进来的属性名对应<br>– 如果传进来的参数名称和对象中的属性名称一致，则将参数值设置在pojo对象中<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/editItemsSubmit"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">editItemSumbit</span><span class="params">(HttpServletRequest request,Integer id,ItemsCustom itemsCustom)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">    itemsService.updateItems(id,itemsCustom);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="包装POJO绑定"><a href="#包装POJO绑定" class="headerlink" title="包装POJO绑定"></a>包装POJO绑定</h3><p>– 将pojo对象作为一个包装对象的属性，controller方法中以该包装对象作为形参。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ItemsQueryVo</span></span>&#123;</div><div class="line">    <span class="comment">//商品信息</span></div><div class="line">    <span class="keyword">private</span> Items items;</div><div class="line">    </div><div class="line">    <span class="comment">//为了系统可扩展性，对原始生成的po进行扩展</span></div><div class="line">    <span class="keyword">private</span> ItemsCustom itemsCustom;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span>商品名称:<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"itemsCustom.name"</span>/&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"查询"</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/queryItems"</span>)</div><div class="line"><span class="function"><span class="keyword">public</span> ModelAndView <span class="title">queryItems</span><span class="params">(HttpServletRequest req,ItemsQueryVo itemsQueryVo)</span></span>&#123;</div><div class="line">    <span class="comment">//调用service查找数据库，查询商品列表</span></div><div class="line">    List&lt;ItemsCuston&gt; itemsList = <span class="keyword">new</span> ArrayList&lt;ItemsCustom&gt;()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="自定义参数绑定"><a href="#自定义参数绑定" class="headerlink" title="自定义参数绑定"></a>自定义参数绑定</h3><p>• 根据业务需求使用自定义参数绑定。<br>• 需要向处理器适配器中注入自定义的参数绑定组件。<br>• 对于controller形参中pojo对象，如果属性中有日期类型，需要自定义参数绑定。<br>–将请求日期数据串转成日期类型，要转换的日期类型和pojo中日期属性的类型保持一致。  </p>
-<p>• 自定义参数绑定，将日期串转成java.util.Date类型。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Items</span></span>&#123;</div><div class="line">    <span class="keyword">private</span> Integer id;</div><div class="line">    <span class="keyword">private</span> String name;</div><div class="line">    <span class="keyword">private</span> Float price;</div><div class="line">    <span class="keyword">private</span> String pic;</div><div class="line">    <span class="comment">//时间</span></div><div class="line">    <span class="keyword">private</span> Date createtime;</div><div class="line">    <span class="comment">//...</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>• 自定义Converter，实现Converter接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> springMVC.p24_1; </div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateConverter</span> <span class="keyword">implements</span> <span class="title">Converter</span>&lt;<span class="title">String</span>, <span class="title">Date</span>&gt; </span>&#123;</div><div class="line">	SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyy-MM-dd"</span>);</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> Date <span class="title">convert</span><span class="params">(String arg0)</span> </span>&#123;</div><div class="line">		</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			<span class="keyword">if</span>(arg0==<span class="keyword">null</span>||arg0.equals(<span class="string">""</span>)) &#123;</div><div class="line">				<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">			&#125;</div><div class="line">			Date d =sdf.parse(arg0);</div><div class="line">			<span class="keyword">return</span> d;</div><div class="line">		&#125; <span class="keyword">catch</span> (ParseException e) &#123;</div><div class="line">			</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">(Date date)</span> </span>&#123;</div><div class="line">		<span class="keyword">if</span>(date==<span class="keyword">null</span>||date.equals(<span class="string">""</span>)) &#123;</div><div class="line">			<span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">return</span> sdf.format(date);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="•-配置方式"><a href="#•-配置方式" class="headerlink" title="• 配置方式"></a>• 配置方式</h3><p>– 需要向处理器适配器中注入自定义的参数绑定组件。  </p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">mvc:annotation-driven</span> <span class="attr">conversion-service</span>=<span class="string">"converterService"</span> <span class="attr">validator</span>=<span class="string">"validator"</span>/&gt;</span></div><div class="line"><span class="comment">&lt;!-- 自定义参数绑定 --&gt;</span></div><div class="line"><span class="comment">&lt;!--加载自定义绑定组件  --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"converterService"</span> <span class="attr">class</span>=<span class="string">"org.springframework.format.support.</span></span></div><div class="line"><span class="tag"><span class="string">                                FormattingConversionServiceFactoryBean"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"converters"</span>&gt;</span></div><div class="line">		<span class="tag">&lt;<span class="name">list</span>&gt;</span></div><div class="line">			<span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"springMVC.p24_1.DateConverter"</span>&gt;</span><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div><div class="line">		<span class="tag">&lt;/<span class="name">list</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></div></pre></td></tr></table></figure>
-<h3 id="集合类绑定"><a href="#集合类绑定" class="headerlink" title="集合类绑定"></a>集合类绑定</h3><p>• 集合类<br>– 支持字符串数组、List、Map<br>• 例如<br>– 批量删除<br>– 页面选中多个checkbox向controller方法传递<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A1.png" alt="Markdown"><br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A2.png" alt="Markdown"></p>
-<h4 id="List"><a href="#List" class="headerlink" title="List"></a>List</h4><p>– List中存放对象，并将定义的List放在包装类中，controller方法中使用包装对象接收。<br>• 例如<br>– 批量修改商品<br><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A3.png" alt="Markdown"></p>
-<p><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A4.png" alt="Markdown"></p>
-<p><img src="http://normantriste.oss-cn-shenzhen.aliyuncs.com/springMVC/%E9%9B%86%E5%90%88%E7%B1%BB%E7%BB%91%E5%AE%9A5.png" alt="Markdown"></p>
+        <p>１．什么是索引？<br>&emsp;&emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;<br><a id="more"></a><br>&emsp;&emsp;Oracle存储索引的数据结构是B<em>树（平衡树），位图索引也是如此，只不过是叶子节点不同B</em>数索引；<br>&emsp;&emsp;索引由根节点、分支节点和叶子节点组成，上级索引块包含下级索引块的索引数据，叶节点包含索引数据和确定行实际位置的rowid。<br>2.使用索引的目的：<br>加快查询速度<br>减少I/O操作<br>消除磁盘排序（索引能加快排序速度）  </p>
+<p>二、索引的几种常见用法  </p>
+<p>1、创建索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> &lt;index_name&gt; <span class="keyword">on</span> &lt;table_name&gt;(&lt;colum_name&gt;) [<span class="keyword">tablespace</span>&lt;tablespace_name&gt;];</div></pre></td></tr></table></figure></p>
+<p>2、重置索引<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert index&lt;index_name&gt; rebuid;</div></pre></td></tr></table></figure></p>
+<p>3、删除索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span>&lt;index_name&gt;</div></pre></td></tr></table></figure></p>
+<p>实例：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">test</span> <span class="keyword">as</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">rownum</span> <span class="keyword">as</span> <span class="keyword">id</span>,</div><div class="line">to_char(<span class="keyword">sysdate</span> + <span class="keyword">rownum</span>/<span class="number">24</span>/<span class="number">3600</span>,<span class="string">'yyyy-mm-dd hh24:mi:ss'</span>) <span class="keyword">as</span> ttime,</div><div class="line">trunc(dbms_random.value(<span class="number">0</span>,<span class="number">100</span>)) <span class="keyword">as</span> random_id,</div><div class="line">dbms_random.string(<span class="string">'x'</span>,<span class="number">20</span>) txt</div><div class="line"><span class="keyword">from</span> dual</div><div class="line"><span class="keyword">connect</span> <span class="keyword">by</span> <span class="keyword">level</span>&lt;=<span class="number">20000000</span>;</div><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">id</span>) <span class="keyword">from</span> <span class="keyword">test</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">where</span> txt=<span class="string">'2W8U82V49FKZYK0JQETF'</span>;</div><div class="line"><span class="keyword">drop</span> <span class="keyword">table</span>  <span class="keyword">test</span>;</div></pre></td></tr></table></figure></p>
+<p>二、索引的分类<br>1、普通索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index index_text_txt on test(txt);</div></pre></td></tr></table></figure></p>
+<p>2、唯一索引 Oracle 自动在表的主键上创建唯一索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create unique index &lt;index_name&gt; on &lt;index_name&gt;(&lt;coiumn_name&gt;);</div></pre></td></tr></table></figure></p>
+<p>3、位图索引<br>作用范围及优点：<br>1、位图索引适合创建在低级数列（重复的数值多，如性别）上<br>2、减少响应时间<br>3、节省空间占用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create bitmap index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name&gt;)</div></pre></td></tr></table></figure></p>
+<p>4、组合索引<br>作用范围及优点：<br>1、组合索引是在表的多个列上创建的索引<br>2、索引中的顺序是任意的<br>3、如果SQL语言的WHERE子句中引用了组合索引的所有或大多数列，则可以提高检索速度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name1&gt;&lt;column_name2&gt;)</div></pre></td></tr></table></figure></p>
+<p>5、基于函数索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;function_name&gt;(&lt;column_name&gt;));</div></pre></td></tr></table></figure></p>
+<p>6、反向键索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(column_name) reverse;</div></pre></td></tr></table></figure></p>
 
       
       
@@ -378,13 +356,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a href="/2017/11/07/第4章-参数绑定/">第4章 参数绑定</a></p>
+        <p><span>本文标题:</span><a href="/2017/11/30/关于Oracle索引/">关于Oracle索引</a></p>
         <p><span>文章作者:</span><a href="/" title="访问 袁晓聪 的个人博客">袁晓聪</a></p>
-        <p><span>发布时间:</span>2017年11月07日 - 12时11分</p>
-        <p><span>最后更新:</span>2017年11月07日 - 14时38分</p>
+        <p><span>发布时间:</span>2017年11月30日 - 10时43分</p>
+        <p><span>最后更新:</span>2017年11月30日 - 10时54分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2017/11/07/第4章-参数绑定/" title="第4章 参数绑定">http://www.normantriste.top/2017/11/07/第4章-参数绑定/</a>
-            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/07/第4章-参数绑定/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <span>原始链接:</span><a class="post-url" href="/2017/11/30/关于Oracle索引/" title="关于Oracle索引">http://www.normantriste.top/2017/11/30/关于Oracle索引/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://www.normantriste.top/2017/11/30/关于Oracle索引/　　作者: 袁晓聪" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
             <script src="/js/clipboard.min.js"></script>
             <script> var clipboard = new Clipboard('.copy-path'); </script>
         </p>
@@ -397,18 +375,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/11/09/第5章-数据校验/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          第5章 数据校验
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/11/07/第3章-映射请求和返回值/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">第3章 映射请求和返回值</div>
+    <a href="/2017/11/09/补充-Spring编码过滤器/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">(补充)Spring编码过滤器</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -419,7 +388,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#参数绑定过程"><span class="toc-number">1.</span> <span class="toc-text">参数绑定过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#默认支持的类型"><span class="toc-number">2.</span> <span class="toc-text">默认支持的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单类型绑定"><span class="toc-number">3.</span> <span class="toc-text">简单类型绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RequestParam的参数"><span class="toc-number">3.1.</span> <span class="toc-text">@RequestParam的参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POJO类型绑定"><span class="toc-number">4.</span> <span class="toc-text">POJO类型绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单POJO绑定"><span class="toc-number">4.1.</span> <span class="toc-text">简单POJO绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包装POJO绑定"><span class="toc-number">4.2.</span> <span class="toc-text">包装POJO绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义参数绑定"><span class="toc-number">4.3.</span> <span class="toc-text">自定义参数绑定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#•-配置方式"><span class="toc-number">4.4.</span> <span class="toc-text">• 配置方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#集合类绑定"><span class="toc-number">4.5.</span> <span class="toc-text">集合类绑定</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#List"><span class="toc-number">4.5.1.</span> <span class="toc-text">List</span></a></li></ol></li></ol></li></ol>
+    
 </div>
 <input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
 
@@ -489,13 +458,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2017/11/09/第5章-数据校验/" title="上一篇: 第5章 数据校验">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a href="/2017/11/07/第3章-映射请求和返回值/" title="下一篇: 第3章 映射请求和返回值">
+            <a href="/2017/11/09/补充-Spring编码过滤器/" title="下一篇: (补充)Spring编码过滤器">
                 <i class="fa fa-angle-right"></i>
             </a>
         

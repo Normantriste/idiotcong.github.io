@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.normantriste.top/"/>
-  <updated>2017-11-09T00:55:55.174Z</updated>
+  <updated>2017-11-30T02:54:55.248Z</updated>
   <id>http://www.normantriste.top/</id>
   
   <author>
@@ -15,6 +15,24 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>关于Oracle索引</title>
+    <link href="http://www.normantriste.top/2017/11/30/%E5%85%B3%E4%BA%8EOracle%E7%B4%A2%E5%BC%95/"/>
+    <id>http://www.normantriste.top/2017/11/30/关于Oracle索引/</id>
+    <published>2017-11-30T02:43:00.000Z</published>
+    <updated>2017-11-30T02:54:55.248Z</updated>
+    
+    <content type="html"><![CDATA[<p>１．什么是索引？<br>&emsp;&emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;<br><a id="more"></a><br>&emsp;&emsp;Oracle存储索引的数据结构是B<em>树（平衡树），位图索引也是如此，只不过是叶子节点不同B</em>数索引；<br>&emsp;&emsp;索引由根节点、分支节点和叶子节点组成，上级索引块包含下级索引块的索引数据，叶节点包含索引数据和确定行实际位置的rowid。<br>2.使用索引的目的：<br>加快查询速度<br>减少I/O操作<br>消除磁盘排序（索引能加快排序速度）  </p><p>二、索引的几种常见用法  </p><p>1、创建索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">index</span> &lt;index_name&gt; <span class="keyword">on</span> &lt;table_name&gt;(&lt;colum_name&gt;) [<span class="keyword">tablespace</span>&lt;tablespace_name&gt;];</div></pre></td></tr></table></figure></p><p>2、重置索引<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">alert index&lt;index_name&gt; rebuid;</div></pre></td></tr></table></figure></p><p>3、删除索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">drop</span> <span class="keyword">index</span>&lt;index_name&gt;</div></pre></td></tr></table></figure></p><p>实例：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">create</span> <span class="keyword">table</span> <span class="keyword">test</span> <span class="keyword">as</span></div><div class="line"><span class="keyword">select</span> <span class="keyword">rownum</span> <span class="keyword">as</span> <span class="keyword">id</span>,</div><div class="line">to_char(<span class="keyword">sysdate</span> + <span class="keyword">rownum</span>/<span class="number">24</span>/<span class="number">3600</span>,<span class="string">'yyyy-mm-dd hh24:mi:ss'</span>) <span class="keyword">as</span> ttime,</div><div class="line">trunc(dbms_random.value(<span class="number">0</span>,<span class="number">100</span>)) <span class="keyword">as</span> random_id,</div><div class="line">dbms_random.string(<span class="string">'x'</span>,<span class="number">20</span>) txt</div><div class="line"><span class="keyword">from</span> dual</div><div class="line"><span class="keyword">connect</span> <span class="keyword">by</span> <span class="keyword">level</span>&lt;=<span class="number">20000000</span>;</div><div class="line"><span class="keyword">select</span> <span class="keyword">count</span>(<span class="keyword">id</span>) <span class="keyword">from</span> <span class="keyword">test</span>;</div><div class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">test</span> <span class="keyword">where</span> txt=<span class="string">'2W8U82V49FKZYK0JQETF'</span>;</div><div class="line"><span class="keyword">drop</span> <span class="keyword">table</span>  <span class="keyword">test</span>;</div></pre></td></tr></table></figure></p><p>二、索引的分类<br>1、普通索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index index_text_txt on test(txt);</div></pre></td></tr></table></figure></p><p>2、唯一索引 Oracle 自动在表的主键上创建唯一索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create unique index &lt;index_name&gt; on &lt;index_name&gt;(&lt;coiumn_name&gt;);</div></pre></td></tr></table></figure></p><p>3、位图索引<br>作用范围及优点：<br>1、位图索引适合创建在低级数列（重复的数值多，如性别）上<br>2、减少响应时间<br>3、节省空间占用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create bitmap index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name&gt;)</div></pre></td></tr></table></figure></p><p>4、组合索引<br>作用范围及优点：<br>1、组合索引是在表的多个列上创建的索引<br>2、索引中的顺序是任意的<br>3、如果SQL语言的WHERE子句中引用了组合索引的所有或大多数列，则可以提高检索速度<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;column_name1&gt;&lt;column_name2&gt;)</div></pre></td></tr></table></figure></p><p>5、基于函数索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(&lt;function_name&gt;(&lt;column_name&gt;));</div></pre></td></tr></table></figure></p><p>6、反向键索引<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">create index &lt;index_name&gt; on &lt;table_name&gt;(column_name) reverse;</div></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;１．什么是索引？&lt;br&gt;&amp;emsp;&amp;emsp;索引是建立在表的一列或多个列上的辅助对象，目的是加快访问表中的数据;&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>(补充)Spring编码过滤器</title>
@@ -470,32 +488,6 @@
       <category term="Java" scheme="http://www.normantriste.top/tags/Java/"/>
     
       <category term="Java面试" scheme="http://www.normantriste.top/tags/Java%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://www.normantriste.top/2017/10/01/hello-world/"/>
-    <id>http://www.normantriste.top/2017/10/01/hello-world/</id>
-    <published>2017-10-01T01:42:00.000Z</published>
-    <updated>2017-10-21T12:18:25.154Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://www.normantriste.top/Home">myBlog</a>! This is your very first post. </p><h2 id="Hello-Word"><a href="#Hello-Word" class="headerlink" title="Hello Word"></a>Hello Word</h2>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;http://www.normantriste.top/Home&quot;&gt;myBlog&lt;/a&gt;! This is your very first post. &lt;/p&gt;
-&lt;h2 id=&quot;Hello-Word&quot;&gt;&lt;a href=&quot;#Hello-
-      
-    
-    </summary>
-    
-      <category term="随笔" scheme="http://www.normantriste.top/categories/%E9%9A%8F%E7%AC%94/"/>
-    
-    
-      <category term="helloworld" scheme="http://www.normantriste.top/tags/helloworld/"/>
     
   </entry>
   
